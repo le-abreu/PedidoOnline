@@ -1,6 +1,7 @@
 package br.com.empresa.handle;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -12,6 +13,16 @@ import br.com.empresa.bean.FuncionarioBean;
 public class RecursoHumanosListHandle {
 	
 	public String pesquisa;
+
+	public FuncionarioBean novoFuncionario;
+	
+	public FuncionarioBean getNovoFuncionario() {
+		return novoFuncionario;
+	}
+
+	public void setNovoFuncionario(FuncionarioBean novoFuncionario) {
+		this.novoFuncionario = novoFuncionario;
+	}
 
 	public List<FuncionarioBean> getListaFuncionario() {
 		return listaFuncionario;
@@ -56,7 +67,16 @@ public class RecursoHumanosListHandle {
 	
 	public void listaFuncionarios(){
 		
-		
+		FuncionarioBean a = new FuncionarioBean();
+		a.setCarteiraTrabalho("fff");
+		a.setCelular("2443");
+		a.setDataAniversario(new Date());
+		a.setDataContratacao(new Date());
+		a.setGenero("");
+		a.setNome("Rodrigo");
+		a.setNomeDoPai("Vicente");
+		a.setNomeDaMae("Cleusa");
+		listaFuncionario.add(a);
 		
 		
 	}
@@ -83,5 +103,8 @@ public void exportaPdf(){
 		
 		
 	}
+
+public void editar(){
+}
 
 }

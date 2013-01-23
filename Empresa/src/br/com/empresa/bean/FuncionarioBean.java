@@ -22,8 +22,17 @@ public class FuncionarioBean {
 	
 	public String genero;
 	
-	public Endereco enderco;
+	public Endereco endereco;
 	
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -81,11 +90,11 @@ public class FuncionarioBean {
 	}
 
 	public Endereco getEnderco() {
-		return enderco;
+		return endereco;
 	}
 
 	public void setEnderco(Endereco enderco) {
-		this.enderco = enderco;
+		this.endereco = enderco;
 	}
 
 	public String getStatus() {
