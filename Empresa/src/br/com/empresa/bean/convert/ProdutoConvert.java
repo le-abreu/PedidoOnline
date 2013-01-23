@@ -12,7 +12,7 @@ import br.com.empresa.dao.ProdutoDAO;
 
 public class ProdutoConvert implements Converter{
 
-
+	//Teste de commit
 	public final static String CONVERTER_ID = "br.com.desenrola.bean.Artista"; //path dos beans da classe Artista
 
 	@Override
