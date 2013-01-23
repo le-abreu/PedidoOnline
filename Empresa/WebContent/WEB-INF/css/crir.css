@@ -1,0 +1,160 @@
+/* Checkboxes */
+label.checkbox_green_checked {
+	background: url(../img/buttons/checkbox_green_checked.png) no-repeat;	
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+label.checkbox_green_unchecked  {
+	background: url(../img/buttons/checkbox_green.png) no-repeat;		
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+
+label.checkbox_red_checked {
+	background: url(../img/buttons/checkbox_red_checked.png) no-repeat;	
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+label.checkbox_red_unchecked  {
+	background: url(../img/buttons/checkbox_red.png) no-repeat;		
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+
+label.checkbox_yellow_checked {
+	background: url(../img/buttons/checkbox_yellow_checked.png) no-repeat;	
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+label.checkbox_yellow_unchecked  {
+	background: url(../img/buttons/checkbox_yellow.png) no-repeat;		
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+
+label.checkbox_white_checked {
+	background: url(../img/buttons/checkbox_white_checked.png) no-repeat;	
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+label.checkbox_white_unchecked  {
+	background: url(../img/buttons/checkbox_white.png) no-repeat;		
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+
+label.checkbox_blue_checked {
+	background: url(../img/buttons/checkbox_blue_checked.png) no-repeat;	
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+label.checkbox_blue_unchecked  {
+	background: url(../img/buttons/checkbox_blue.png) no-repeat;		
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+
+/* Radio Buttons */
+label.radio_green_checked {
+	background: url(../img/buttons/checkbox/bullet_green.png) no-repeat;			
+	height: 17px;
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+label.radio_green_unchecked  {
+	background: url(../img/buttons/checkbox/bullet_white.png) no-repeat;		
+	height: 17px;	
+	display: block;
+	margin: 0px 0;
+	padding-left: 25px;
+}
+
+label.radio_red_checked {
+	background: url(../img/buttons/checkbox/bullet_green.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+label.radio_red_unchecked  {
+	background: url(../img/buttons/checkbox/bullet_white.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+
+label.radio_white_checked {
+	background: url(../img/buttons/checkbox/bullet_green.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+label.radio_white_unchecked  {
+	background: url(../img/buttons/checkbox/bullet_white.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+
+label.radio_blue_checked {
+	background: url(../img/buttons/checkbox/bullet_green.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+label.radio_blue_unchecked  {
+	background: url(../img/buttons/checkbox/bullet_white.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+
+label.radio_yellow_checked {
+	background: url(../img/buttons/checkbox/bullet_green.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+label.radio_yellow_unchecked  {
+	background: url(../img/buttons/checkbox/bullet_white.png) no-repeat;	
+	display: block;
+	margin: 10px 0;
+	padding-left: 25px;
+}
+/* Hover State */
+label:hover{
+	color: #575B60;
+}
+
+label.highlighted {
+	border: 1px solid #333;
+}
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* STOP EDITTING - DO NOT CHANGE OR REMOVE        */
+.crirHidden {
+	position: absolute;
+	left: -1000px;
+}
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" 
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Acesso ao Sistema</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link href="styles/padrao.css" rel="stylesheet" type="text/css" />
+	<link href="styles/skin-default.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+.yui-skin-sam .yui-layout-top {
+	background-color: #000000;
+}
+
+.yui-skin-sam .yui-layout-menu {
+	background-color: #FFFFFF;
+}
+
+.ui-dock-container-top {
+	background-image: none;
+	background-color: #000000;
+	border-color: #000000;
+}
+</style>
+</h:head>
+<h:body class="yui-skin-sam">
+	<p:layout fullPage="true" id="lawyoutMain">
+		<p:layoutUnit id="lawyoutTop" position="top" resizable="true" height="100" minHeight="20" maxHeight="100" style="text-align: right;" styleClass="yui-layout-top">
+
+			<table border="0" align="center" width="100%" style="height: 100px;">
+				<tr>
+					<td align="center" valign="top">
+						<div align="center"></div>
+					</td>
+					<td align="right" width="150"><h:graphicImage id="imgTopoLogo" alt="A imagem não foi encontrada." url="img/logo/elaw.png">
+						</h:graphicImage></td>
+				</tr>
+			</table>
+
+		</p:layoutUnit>
+		<p:layoutUnit position="center" resizable="true" collapsible="true" minWidth="50" id="lawyoutRight" scrollable="true">
+
+			<h:form>
+				<div id="login" align="center">
+					<h4></h4>
+					<h:panelGrid columns="2" cellpadding="5px;">
+						<f:facet name="header">
+							<h:messages errorClass="error" infoClass="info" globalOnly="true" layout="table" />
+						</f:facet>
+						<h:outputLabel for="j_username" value="Usuário" />
+						<h:panelGroup>
+							<p:inputText id="j_username" value="#{loginBean.username}" required="true" requiredMessage="Campo [Usuário] é obrigatório!" />
+							<h:message for="j_username" errorClass="error" />
+						</h:panelGroup>
+						<h:outputLabel for="j_password" value="Senha" />
+						<h:panelGroup>
+							<h:inputSecret id="j_password" value="#{loginBean.password}" required="true" requiredMessage="Campo [Senha] é obrigatório!" />
+							<h:message for="j_password" errorClass="error" />
+						</h:panelGroup>
+						<f:facet name="footer">
+							<h:panelGroup style="display:block; text-align:center;">
+
+								<p:commandButton id="login" type="submit" value="Acessar" action="#{loginBean.doLogin}" style="margin-right:10px; margin-top:10px; font-size: 0.8em;" icon="ui-icon-disk" ajax="false" />
+							</h:panelGroup>
+						</f:facet>
+
+					</h:panelGrid>
+				</div>
+			</h:form>
+
+		</p:layoutUnit>
+	</p:layout>
+
+</h:body>
+</html>

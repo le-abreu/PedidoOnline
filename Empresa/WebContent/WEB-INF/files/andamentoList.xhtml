@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/padraoContencioso.xhtml" 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg['page.andamento.header']}</ui:define>
+	<ui:define name="content">
+		
+		<p:panel id="panelAndamentoList" header="#{msg['page.andamento.header']}" style="margin-bottom:90px; font-size: 12px;">
+
+			<p:messages id="messageAndamento" />
+			
+			<h:form id="andamentoListForm" prependId="false">
+
+				<h:panelGroup>
+						
+						<h:panelGrid columns="2" id="searchOptionsGrid">
+
+							<h:outputLabel value="#{msg['page.clientGroup.header']}:" />
+							<p:selectOneMenu id="comboClientGroup" title="#{msg['page.clientGroup.header']}" value="#{andamentoBean.clientGroupSelected}" style="width: 250px;" filter="true" filterText="#{msg['commons.pesquisar']}" filterMatchMode="startsWith" panelStyle="width:300px;  font-size:0.6em;">
+								<f:selectItem itemLabel="#{msg['commons.todos']}" itemValue="#{null}" />
+								<f:selectItems value="#{clientGroupBean.listClientGroup}" itemLabel="#{clientGroup.nome}" itemValue="#{clientGroup}" var="clientGroup" />
+								<f:converter converterId="clientGroupConverter"></f:converter>
+							</p:selectOneMenu>
+
+							<h:outputLabel value="#{msg['page.agendamentoContencioso.lawyer']} do Processo:" rendered="#{contenciosoConfigurationBean.contenciosoConfiguration.contenciosoLawyerEnable eq false}" />
+							<p:selectOneMenu id="comboAdvogadoOwner" title="#{msg['page.lawyer.header']}" value="#{andamentoBean.lawyerOwnerSelected}" rendered="#{contenciosoConfigurationBean.contenciosoConfiguration.contenciosoLawyerEnable eq false}" style="width: 250px;" filter="true" filterText="#{msg['commons.pesquisar']}" filterMatchMode="startsWith" panelStyle="width:300px;  font-size:0.6em;">
+								<f:selectItem itemLabel="#{msg['commons.todos']}" itemValue="#{null}" />
+								<f:selectItems value="#{lawyerBean.listLawyerAll}" itemLabel="#{lawyer.registration.nome}" itemValue="#{lawyer}" var="lawyer" />
+								<f:converter converterId="lawyerConverter"></f:converter>
+							</p:selectOneMenu>
+
+							<h:outputLabel value="#{msg['page.agendamentoContencioso.lawyer']}:" rendered="#{contenciosoConfigurationBean.contenciosoConfiguration.contenciosoLawyerEnable}" />
+							<p:selectOneMenu id="comboContenciosoAdvogado" title="#{msg['page.lawyer.header']}" value="#{andamentoBean.lawyerOwnerSelected}" rendered="#{contenciosoConfigurationBean.contenciosoConfiguration.contenciosoLawyerEnable}" style="width: 250px;" filter="true" filterText="#{msg['commons.pesquisar']}" filterMatchMode="startsWith" panelStyle="width:300px;  font-size:0.6em;">
+								<f:selectItem itemLabel="#{msg['commons.todos']}" itemValue="#{null}" />
+								<f:selectItems value="#{contenciosoLawyerBean.listContenciosoLawyers}" itemLabel="#{lawyer.registration.nome}" itemValue="#{lawyer}" var="lawyer" />
+								<f:converter converterId="lawyerConverter"></f:converter>
+							</p:selectOneMenu>
+
+							<h:outputLabel value="#{msg['page.andamentoTipo.header']}:" />
+							<p:selectCheckboxMenu id="comboAndamentoTipo" label="#{msg['page.andamentoTipo.header']}" value="#{andamentoBean.andamentoTiposSelected}" style="width: 250px;" filter="true" filterText="#{msg['commons.pesquisar']}" filterMatchMode="startsWith" panelStyle="width:300px;  font-size:0.6em;">
+								<f:selectItems value="#{andamentoTipoBean.listAndamentoTipo}" itemLabel="#{andamentoTipo.nome}" itemValue="#{andamentoTipo}" var="andamentoTipo" />
+								<f:converter converterId="andamentoTipoConverter"></f:converter>
+							</p:selectCheckboxMenu>
+
+							<h:outputLabel value="#{msg['page.estado.header']}:" />
+							<p:selectOneMenu id="comboEstado" title="#{msg['page.estado.header']}" value="#{andamentoBean.estado}" style="width: 250px;" filter="true" filterText="#{msg['commons.pesquisar']}" filterMatchMode="startsWith" panelStyle="width:300px;  font-size:0.6em;">
+								<f:selectItem itemLabel="#{msg['commons.todas']}" itemValue="#{null}" />
+								<f:selectItems value="#{estadoBean.listEstados}" itemLabel="#{estado.nome}" itemValue="#{estado}" var="estado" />
+								<f:converter converterId="estadoConverter"></f:converter>
+								<p:ajax event="change" update=":andamentoListForm:comboComarca" listener="#{andamentoBean.listComarcaByEstado}" />
+							</p:selectOneMenu>
+
+							<h:outputLabel value="#{msg['page.comarca.header']}:" />
+							<p:selectOneMenu id="comboComarca" title="#{msg['page.comarca.header']}" value="#{andamentoBean.comarca}" style="width: 250px;" filter="true" filterText="#{msg['commons.pesquisar']}" filterMatchMode="startsWith" panelStyle="width:300px;  font-size:0.6em;">
+								<f:selectItem itemLabel="#{msg['commons.todas']}" itemValue="#{null}" />
+								<f:selectItems value="#{andamentoBean.comarcas}" itemLabel="#{comarca.nome} - #{comarca.estado.uf}" itemValue="#{comarca}" var="comarca" />
+								<f:converter converterId="comarcaConverter"></f:converter>
+							</p:selectOneMenu>
+						
+							<p:selectOneMenu id="comboDataTipo" title="#{msg['commons.data']}" value="#{andamentoBean.dataTipo}" required="true" requiredMessage="[Data] obrigatório!">
+								<f:selectItem itemLabel="#{msg['commons.selecionarData']}" itemValue="" />
+								<f:selectItem itemLabel="Data do Andamento" itemValue="data" />
+								<f:selectItem itemLabel="#{msg['commons.registrado']}" itemValue="dataRegistrado" />
+								<p:ajax event="change" immediate="true" />
+							</p:selectOneMenu>
+						
+							<h:panelGrid id="pgData" columns="5">
+								<h:outputLabel value="#{msg['commons.data']}:" />
+								<p:calendar id="dataFrom" size="10" title="#{msg['commons.dataInicial']}" value="#{andamentoBean.dataFrom}" required="true" requiredMessage="[#{msg['commons.dataInicial']}] #{msg['commons.obrigatorio']}" showOtherMonths="true" lang="pt" pattern="dd/MM/yyyy" />
+								<h:outputLabel value="#{msg['commons.ate']}" />
+								<p:calendar id="dataTo" size="10" title="#{msg['commons.dataFinal']}" value="#{andamentoBean.dataTo}" required="true" requiredMessage="[#{msg['commons.dataFinal']}] #{msg['commons.obrigatorio']}" showOtherMonths="true" lang="pt" pattern="dd/MM/yyyy" />
+							</h:panelGrid>
+
+							<h:panelGrid id="panelPesquisar" columns="1">
+								<p:commandButton id="btnPesquisar" value="#{msg['commons.pesquisar']}" style="font-size: 0.8em;" icon="ui-icon-search" ajax="false" action="#{andamentoBean.findAndamentos}" />
+							</h:panelGrid>
+							
+						</h:panelGrid>	
+			
+				</h:panelGroup>
+			
+			</h:form>
+
+			<h:form id="buttonsForm" prependId="false">
+				<p:toolbar style="margin-top: 8px" >
+					<p:toolbarGroup>
+
+						<p:commandButton id="btnPdfPublicacao" title="#{msg['relatorio.pdf']}"
+							icon="images/pdf.png" immediate="true" value="#{msg['relatorio.pdf']}" 
+							style="font-size: 0.8em;"
+							onclick="andamentoPdf.show();"
+							disabled="#{empty andamentoBean.andamentos}">
+		            	</p:commandButton>
+
+		            	<p:commandButton id="btnExcelPublicacao" title="#{msg['relatorio.excel']}"
+		            		actionListener="#{andamentoBean.generateExcelReport}"
+							icon="images/excel.png" immediate="true" ajax="false" value="#{msg['relatorio.excel']}" 
+							style="font-size: 0.8em;"
+							disabled="#{empty andamentoBean.andamentos}">
+							<p:fileDownload value="#{andamentoBean.streamedContent}" />
+		            	</p:commandButton>
+						
+						<p:commandButton id="btnExcelProcessos" immediate="true" value="#{msg['relatorio.excel']} #{msg['page.processo.header']}" icon="ui-icon-file" title="#{msg['relatorio.gerarRelatorio']}" oncomplete="processoReport.show()" update=":processoReportForm" style="font-size: 0.8em;" disabled="#{empty andamentoBean.andamentos}"
+							actionListener="#{andamentoBean.loadProcessosFromAndamentos}" action="#{processoReportBean.listProcessoReport}">
+							<f:setPropertyActionListener target="#{processoReportBean.processoReportSelected}" value="#{null}" />
+							<f:setPropertyActionListener target="#{processoReportBean.format}" value="excel" />
+							<f:setPropertyActionListener target="#{processoReportBean.processoViewers}" value="#{andamentoBean.processoViewers}" />
+							<f:setPropertyActionListener target="#{processoReportBean.processoDaoFilters}" value="#{null}" />
+						</p:commandButton>		
+						
+						<p:commandButton id="btnExcelProcessosContax" immediate="true" value="#{msg['relatorio.excel']} Dev"
+							actionListener="#{andamentoBean.loadProcessosFromAndamentos}"
+							action="#{relatorioContaxBean.gerarRelatorio}"  update=":buttonsForm"
+							ajax="false"
+							icon="ui-icon-file" title="#{msg['relatorio.gerarRelatorio']}" style="font-size: 0.8em;" disabled="#{empty andamentoBean.andamentos}"
+							rendered="#{organizationBean.userSession.organization.organizationId eq 15}">
+							<f:setPropertyActionListener target="#{relatorioContaxBean.processoViewers}" value="#{andamentoBean.processoViewers}" />
+						</p:commandButton>		
+						
+						<p:commandButton id="btnExcelProcessosContaxDownload" immediate="true" value="#{msg['relatorio.excel']} Dev Download - #{relatorioContaxBean.streamedContentExcel}"
+							icon="ui-icon-file" title="#{msg['relatorio.gerarRelatorio']}" style="font-size: 0.8em;" disabled="#{empty andamentoBean.andamentos}"
+							ajax="false"
+							rendered="#{organizationBean.userSession.organization.organizationId eq 15 and relatorioContaxBean.streamedContentExcel ne null}">							
+							<p:fileDownload value="#{relatorioContaxBean.streamedContentExcel}" />
+						</p:commandButton>		
+		            			            	
+					</p:toolbarGroup>	
+				</p:toolbar>
+
+				<h:panelGroup id="panelGroupDataTable">
+
+					<p:dataTable id="dtAndamentoResults" var="andamento" value="#{andamentoBean.andamentos}" emptyMessage="#{msg['commons.semRegistro']}!" paginator="true" rowKey="#{andamento.andamentoId}" rows="50"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="50,100,150" style="margin-top: 8px">
+
+						<p:column sortable="true" sortBy="#{andamento.dataRegistrado}" parser="string">
+							<f:facet name="header">
+								<h:outputText value="#{msg['commons.registrado']}" />
+							</f:facet>
+							<h:outputText value="#{andamento.dataRegistrado}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{andamento.data}" parser="string">
+							<f:facet name="header">
+								<h:outputText value="#{msg['commons.data']}" />
+							</f:facet>
+							<h:outputText value="#{andamento.data}">
+								<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" locale="pt_BR" />
+							</h:outputText>
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{andamento.ocorrencia}" parser="string">
+							<f:facet name="header">
+								<h:outputText value="#{msg['page.andamento.ocorrencia']}" />
+							</f:facet>
+							<h:outputText value="#{andamento.ocorrencia}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{andamento.andamentoTipo.nome}" parser="string">
+							<f:facet name="header">
+								<h:outputText value="#{msg['page.andamentoTipo.header']}" />
+							</f:facet>
+							<h:outputText value="#{andamento.andamentoTipo.nome}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{andamento.processo.numero}" parser="string" filterStyle="width: 45px">
+							<f:facet name="header">
+								<h:outputText value="#{msg['page.processo.numero']}" />
+							</f:facet>
+							<h:outputText value="#{andamento.processo.numero}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{andamento.processo.processoId}" parser="number" filterStyle="width: 45px">
+							<f:facet name="header">
+								<h:outputText value="#{msg['commons.id']}" />
+							</f:facet>
+							<h:outputText value="#{andamento.processo.processoId}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="#{msg['page.usuario.header']}" />
+							</f:facet>
+							<h:outputText value="#{andamento.usuarioRegistrado.name}" />
+						</p:column>
+
+						<p:column style="width:60px;">
+							<p:commandButton id="btnProcesso" title="#{msg['page.homePage.abrirProcesso']}" icon="ui-icon ui-icon-folder-collapsed" action="#{processoBean.view}" immediate="true" ajax="false" actionListener="#{agendamentoContenciosoBean.confirmaFromProcesso}">
+								<f:setPropertyActionListener target="#{processoBean.processo}" value="#{andamento.processo}" />
+								<f:setPropertyActionListener target="#{recursoBean.processoSelected}" value="#{andamento.processo}" />
+								<f:setPropertyActionListener target="#{timesheetBean.processo}" value="#{andamento.processo}" />
+								<f:setPropertyActionListener target="#{timesheetBean.timesheetRecords}" value="#{timesheetBean.loadTimesheetRecordFromProcesso}" />
+								<f:setPropertyActionListener target="#{arquivoFisicoBean.processo}" value="#{andamento.processo}" />
+							</p:commandButton>
+						</p:column>
+
+						<f:facet name="footer">  
+			            	#{fn:length(andamentoBean.andamentos)} #{msg['commons.registroEncontrados']} 
+			         	</f:facet>
+					
+					</p:dataTable>
+				
+				</h:panelGroup>
+			
+			</h:form>
+			
+			<p:dialog id="andamentoPdfDialog" widgetVar="andamentoPdf" header="Exportar" width="500">
+				<h:form id="andamentoPdfForm" prependId="false">
+					<h:panelGrid columns="4" id="gridAndamentoPdf">
+						<h:outputText value="Consolidar por: " />
+						<p:selectOneMenu id="selectPdfQuebra" value="#{andamentoBean.pdfQuebra}" required="true" requiredMessage="Campo [Quebrar] é obrigatório!">
+							<f:selectItem itemLabel="#{msg['commons.selecione']}" itemValue="#{null}" />
+							<f:selectItem itemLabel="Advogado" itemValue="lawyer" />
+							<f:selectItem itemLabel="Data" itemValue="data" />
+							<p:ajax />
+						</p:selectOneMenu>
+						
+						<h:outputText value="Quebrar Página" />
+						<p:selectBooleanCheckbox id="pdfQuebraPaginaField" value="#{andamentoBean.pdfQuebraPagina}">
+							<p:ajax />
+						</p:selectBooleanCheckbox>
+					</h:panelGrid>
+					<p:commandButton id="btnPdfAndamento" title="#{msg['relatorio.pdf']}"
+						actionListener="#{andamentoBean.generatePdfReport}"
+						icon="images/pdf.png" immediate="true" ajax="false" value="#{msg['relatorio.pdf']}" 
+						style="font-size: 0.8em;"
+						disabled="#{empty andamentoBean.andamentos}">
+						<p:fileDownload value="#{andamentoBean.streamedContent}" />
+	            	</p:commandButton>
+				</h:form>
+			</p:dialog>	
+
+			<p:dialog id="processoReportDialog" widgetVar="processoReport" header="Relatório" width="500">
+				<h:form id="processoReportForm" prependId="false">
+					<h:panelGrid columns="2" id="gridModeloRelatorio">
+						<h:outputText value="#{msg['relatorio.modeloRelatorio']}: " />
+						<p:selectOneMenu id="selectProcessoReport" value="#{processoReportBean.processoReportSelected}" converter="processoReportConverter">
+							<f:selectItem itemLabel="#{msg['commons.selecione']}" itemValue="#{null}" />
+							<f:selectItems value="#{processoReportBean.processoReports}" var="processoReport" itemLabel="#{processoReport.title}" itemValue="#{processoReport}" />
+							<p:ajax update=":processoReportForm:btnGerarExcel" />
+						</p:selectOneMenu>
+						<p:commandButton id="btnGerarExcel" icon="ui-icon-arrowthickstop-1-s" value="#{msg['relatorio.gerarRelatorio']}" disabled="#{processoReportBean.processoReportSelected eq null}" style="margin-top: 15px; font-size: 0.8em" action="#{processoReportBean.exportProcessos}"
+							update=":processoReportForm:panelProcessoReport">
+						</p:commandButton>
+					</h:panelGrid>
+
+					<p:outputPanel id="panelProcessoReport">
+						<p:commandButton id="btnDownloadExcel" icon="ui-icon-arrowthickstop-1-s" value="#{msg['commons.baixar']} Relatório" ajax="false" style="margin-top: 15px; font-size: 0.8em" rendered="#{processoReportBean.processoReportSelected ne null}" immediate="true">
+							<p:fileDownload value="#{processoReportBean.file}" />
+						</p:commandButton>
+					</p:outputPanel>
+				</h:form>
+			</p:dialog>
+			
+		</p:panel>
+	
+	</ui:define>
+</ui:composition>

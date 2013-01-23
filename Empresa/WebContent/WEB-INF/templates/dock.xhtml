@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"	  
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+		<style type="text/css">
+			.ui-datepicker-calendar tr, .ui-datepicker-calendar td, .ui-datepicker-calendar td a, .ui-datepicker-calendar th{font-size:inherit;}
+			div.ui-datepicker{font-size:12px;width:inherit;height:inherit;}
+			.ui-datepicker-title span{font-size:12px;}
+		</style>
+		
+		<style type="text/css">
+			.ui-dock-container-top
+			{
+			   position:absolute;
+			   left:50px;
+			   background-image: none;
+			   background-color: #000000;
+			   border-color: #000000;
+			   font-size:13px;
+			   z-index: 100;
+			}
+			.productionRunEvent
+			{
+			   background-color: #000000;
+			   border-color: #000000;
+			}
+			.notifyArrived
+			{
+			   font-size:12px;
+			   font-weight: bold;
+			   color: red;
+			}
+			.columnAlignTop
+			{
+			  	vertical-align: top;
+			}
+	
+		</style>
+		<script type="text/javascript">
+			PrimeFaces.locales['pt'] = {
+		                closeText: 'OK',
+		                prevText: 'Anterior',
+		                nextText: 'PrÃ³ximo',
+		                currentText: 'Inicio',
+		                monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+		                dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+		                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','SÃ¡b'],
+		                dayNamesMin: ['D','S','T','Q','Q','S','S'],
+		                weekHeader: 'Semana',
+		                firstDay: 1,
+		                isRTL: false,
+		                showMonthAfterYear: false,
+		                yearSuffix: '',
+		                timeOnlyTitle: 'Tempo',
+		                timeText: 'Tempo',
+		                hourText: 'Hora',
+		                minuteText: 'Minuto',
+		                secondText: 'Segundo',
+		                currentText: 'Hoje',
+		                ampm: false,
+		                month: 'Mês',
+		                week: 'Semana',
+		                day: 'Dia',
+		                allDayText : 'Dia Todo'
+		            };
+		</script>
+		<script type="text/javascript">
+			PrimeFaces.locales['es'] = {
+		                closeText: 'OK',
+		                prevText: 'Anterior',
+		                nextText: 'Siguiente',
+		                currentText: 'Inicio',
+		                monthNames: ['Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+		                monthNamesShort: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'],
+		                dayNames: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sábado'],
+		                dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+		                dayNamesMin: ['D','L','M','X','J','V','S'],
+		                weekHeader: 'Semana',
+		                firstDay: 1,
+		                isRTL: false,
+		                showMonthAfterYear: false,
+		                yearSuffix: '',
+		                timeOnlyTitle: 'Solo hora',
+		                timeText: 'Tempo',
+		                hourText: 'Hora',
+		                minuteText: 'Minuto',
+		                secondText: 'Segundo',
+		                currentText: 'Fecha actual',
+		                ampm: false,
+		                month: 'Mes',
+		                week: 'Semana',
+		                day: 'Día',
+		                allDayText : 'Todo el día'
+		            };
+		</script>
+		<script type="text/javascript">
+			PrimeFaces.locales ['en'] = {
+	                closeText: 'OK',
+	                prevText: 'Previous',
+	                nextText: 'Next',
+	                currentText: 'Home',
+	                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
+	                monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
+	                dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+	                dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Tue', 'Fri', 'Sat'],
+	                dayNamesMin: ['S', 'M', 'T', 'W ', 'T', 'F ', 'S'],
+	                weekHeader: 'Week',
+	                FirstDay: 1,
+	                isRTL: false,
+	                showMonthAfterYear: false,
+	                yearSuffix:'',
+	                timeOnlyTitle: 'Only Time',
+	                timeText: 'Time',
+	                hourText: 'Time',
+	                minuteText: 'Minute',
+	                secondText: 'Second',
+	                currentText: 'Current Date',
+	                ampm: false,
+	                month: 'Month',
+	                week: 'week',
+	                day: 'Day',
+	                allDayText: 'All Day'
+	            };
+	
+		</script>
+	
+		<h:panelGrid style="position:fixed; z-index:1000; font-size: 0.8em; right: 10px; top: 10px;">
+			<p:ajaxStatus>
+				<f:facet name="start">
+					<p:panel>
+						<h:graphicImage value="/images/ajax-loader.gif" />
+					    <h:outputText value="Aguarde, carregando..." />
+				    </p:panel>
+				</f:facet>  
+				      
+				<f:facet name="complete">
+				    <h:outputText value="" />
+				</f:facet>
+	        </p:ajaxStatus>
+	       </h:panelGrid>  
+	
+		<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" height="110" bgcolor="#000000" style="margin:0;padding:0;">
+			<tr>
+				<td width="177" align="left" bgcolor="#{organizationBean.userSession.organization.bodyColor}">
+				 	<h:graphicImage id="imgTopoLogoEmpresa" url="#{organizationBean.userSession.organization.logo.fileUrl}" />					 	
+				</td>
+				<td align="center">		
+					<h:form id="dockForm">
+					<div style="width: 60%; position:absolute; top:0; left:50; background-color: #000000;">
+						<p:dock position="top" halign="center" styleClass="ui-dock-container-top">
+							<p:menuitem icon="/images/dock/home.png" url="homePage.elaw" target="_parent" style="color:#FFFFFF;" value="Home Page"/>
+							
+							<p:menuitem icon="/images/dock/financeiro.png" url="/financialTransactionPaymentList.elaw" target="_parent" style="color:#FFFFFF;"  value="#{msg['menu.financeiro.financeiro']}"/>
+							<p:menuitem icon="/images/dock/logout.png" url="/j_spring_security_logout" target="_parent" style="color:#FFFFFF;" value="#{msg['commons.logout']}"/>
+						</p:dock>
+	
+						<h:panelGrid id="alertGrid" columns="1">
+						
+							<p:growl id="alertGrowl" showDetail="false" sticky="true" autoUpdate="true" />
+	
+						</h:panelGrid>	
+												
+					</div>	
+					</h:form>
+				</td>
+				<td align="right">
+					<h:form prependId="false">
+						<a href="http://www.elaw.com.br" title="Clique Aqui para Visualizar o Site da Elaw" alt="Clique Aqui para Visualizar o Site da Elaw">
+						<img src="img/logo/elaw.png" border="0"/>
+						</a>	
+					</h:form> 
+				</td>
+			</tr>
+		</table>
+			
+		<h:form prependId="false" id="taskForm">
+	    	<p:dialog id="agendamentoAlertDialogView" widgetVar="agendamentoAlertDialog" showEffect="fold" hideEffect="fold" header="Agendamentos" 
+	    				resizable="true" width="800" maximizable="true" closable="true" position="bottom" height="500" style="margin-left: 5px" modal="true">  
+	    		<h:panelGrid id="agendamentoAlertDialogViewGrid" style="font-size: 12px; align: left; margin-left: 5px;" columns="1">			    				
+	    								    				
+					<h:panelGrid id="pgLegendaStatus" columns="9">
+						<h:outputText id="statusText" value="Status: &nbsp;" style="color:black; margin-left: 30px" />
+					
+						&nbsp;
+						<h:graphicImage id="statusMetaIcon0" value="/img/buttons/checkbox_red.png" width="10px" />
+						<h:outputText id="statusMetaText0" value="&nbsp;Atrasado" style="color:red" />
+						
+						&nbsp;
+						<h:graphicImage id="statusMetaIcon1" value="/img/buttons/checkbox_orange.png" width="10px" />
+						<h:outputText id="statusMetaText1" value="&nbsp;Pendente" style="color:orange" />
+						
+						&nbsp;
+						<h:graphicImage id="statusMetaIcon2" value="/img/buttons/checkbox_green.png" width="10px" />
+						<h:outputText id="statusMetaText2" value="&nbsp;Confirmado" style="color:green" />
+						
+						&nbsp;
+						<h:graphicImage id="statusMetaIcon3" value="/img/buttons/checkbox_blue.png" width="10px" />	
+						<h:outputText id="statusMetaText3" value="&nbsp;Cancelado" style="color:blue" />
+					</h:panelGrid>
+		
+					 
+				</h:panelGrid>
+	     	</p:dialog>  					     	
+	     	
+		</h:form>
+</ui:composition>

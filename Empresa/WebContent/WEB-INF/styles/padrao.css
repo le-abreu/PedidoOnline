@@ -1,0 +1,83 @@
+@CHARSET "ISO-8859-1";
+
+form {
+	padding: 0pt;
+	margin: 0pt;
+}
+	
+.left {
+	text-align: left;	
+}
+.right {
+	text-align: right;	
+}
+
+img {
+	border: 0em;
+}
+
+/*
+	Estilos comuns
+*/
+.error {
+	color: red;
+}
+
+.no-padding {
+	padding: 0px;
+}
+
+.columnAlignTop{
+	vertical-align: top;
+}
+
+.columnPaddingRight {
+	padding-right:50px;
+}
+
+// retira a borda preta da tabela dentro da dataTable
+.ui-dt-c table {
+	border:transparent;
+}
+
+.ui-dt-c table tr {
+	border:transparent;
+}
+
+.ui-dt-c table tr td {
+	border:transparent;
+}
+	
+// retira a borda preta da tabela dentro da treeTable
+	
+.ui-tt-c table {
+	border:transparent;
+}
+
+.ui-tt-c table tr {
+	border:transparent;
+}
+
+.ui-tt-c table tr td {
+	border:transparent;
+}
+
+.ui-tt-c span {
+	display:block;
+}
+
+a.linkGed:link {
+	color:#0000FF; /* unvisited link */
+}
+
+a.linkGed:visited {
+	color:#0000FF; /* visited link */
+}
+
+a.linkGed:hover {
+	color:#0000FF; /* mouse over link */
+}
+
+a.linkGed:active {
+	color:#0000FF; /* selected link */
+}

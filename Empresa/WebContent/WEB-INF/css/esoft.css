@@ -1,0 +1,728 @@
+table.leftmenu  a, .actionmenu a:visited { 
+  left: 42px;
+  color: #FFFFFF;
+  display: block;
+  float: left;
+  font: normal normal 300 0.8em/1.8em sans-serif;
+  margin-right: -5px;
+  padding: 3px 10px 0 3px;
+  width: auto;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: .8em;
+}
+
+table.rightmenu  a, .actionmenu a:visited { 
+  color: #FFFFFF;
+  display: block;
+  float: left;
+  font: normal normal 300 0.8em/1.8em sans-serif;
+  margin-right: -5px;
+  padding: 3px 10px 0 3px;
+  width: auto;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-size: .8em;
+}
+
+table.content { 
+	font-family: sans-serif;
+  	background: #FFFFFF;
+	text-align: left;
+	font-weight: normal;
+	font-size: 13px;
+	color: #4791BC;
+	background-color: #FFFFFF;
+  	padding: 10px 25px;
+  	padding-top: 15px;
+  	text-decoration: none;
+}
+
+
+table.content a, .actionmenu a:visited {
+	text-align: left;
+	font-weight: normal;
+	font-size: 13px;
+	color: #4791BC;
+  	text-decoration: none;
+}
+
+table.content a:hover {
+  text-decoration: underline;
+}
+
+table.recent { 
+	font-family: sans-serif;
+  	background: #FFFFFF;
+	text-align: left;
+	font-weight: normal;
+	font-size: 13px;
+	background-color: #FFFFFF;
+  	padding: 10px 25px;
+  	padding-top: 15px;
+  	text-decoration: none;
+}
+
+table.recent a, .actionmenu a:visited { 
+	font-family: sans-serif;
+	text-align: left;
+	font-weight: normal;
+	font-size: 13px;
+	color: #4791BC;
+  	text-decoration: none;
+}
+table.recent a:hover { 
+  text-decoration: underline;
+}
+#document-title h1 {
+  color: #005A83;
+  font: 700 1.2em / 1.4em sans-serif;
+  font-size: 2.0em;
+  letter-spacing: -1px;
+  margin: 0;
+  padding: 5px 0;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
+}
+#document-tags a, a:visited {
+  font-size: 13px;
+  letter-spacing: -1px;
+  text-decoration: none;
+  text-transform: none;
+}
+hr {
+	height: 2px;
+	color: #fff;
+	margin: 10px 0px;
+	border: none;
+	border-top: 1px dotted #D3D3D3;
+}
+
+.separator {
+  color: #888888;
+}
+
+#xwikicontent {
+  overflow: auto;
+  width: 100%;
+}
+.tag {
+	color: #4791BC;
+}
+.tagadd {
+	color: #4D4D4D;
+  	font-size: 1em;
+}
+.tagdelete {
+	color: #FF00000;
+  	font-size: 1em;
+}
+
+/* -----------------------Form Table--------------------------*/
+table.formtable { 
+	font-family: sans-serif;
+  	background: #FFFFFF;
+	text-align: left;
+	font-weight: normal;
+    color: #005A83;
+	background-color: #FFFFFF;
+  	border: 0;
+  	padding: 10px 25px;
+  	padding-top: 15px;
+  	text-decoration: none;
+}
+table.formtable td{ 
+	padding:1px; 
+}
+.formledgend {
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+.formresultledgend {
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.resultinfo {
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  color: #000000;
+}
+.textfield {
+  font-size: 1.0em;
+  letter-spacing: 1px;
+}
+/* -----------------------Boxes--------------------------*/
+.box {
+  margin: 1em 0;
+  overflow: auto;
+  padding: 0 1px;
+}
+
+.code, .box {
+  background-color: #EFEFEF;
+  border: 1px dotted #D6E1E7;
+}
+
+.errormessage, .warningmessage, .infomessage, .plainmessage {
+  background: #EFEFEF 6px 8px no-repeat;
+  border: 1px dotted #D6E1E7;
+  margin: 4px 0;
+  overflow: auto;
+  padding: 8px 28px;
+  text-align: justify;
+}
+
+.infomessage {
+  background-image: url("../resources/icons/silk/information.gif");
+  color: #369;
+}
+.message {
+  color: #4D4D4D;
+}
+
+
+/* -----------------------Tema Menue--------------------------*/
+
+ul.xlist {
+  margin: 0 0 0 .5em !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+ul.xlist li.xunderline {
+  border-bottom: solid 1px #D6E1E7 !important;
+}
+
+ul.xlist li.xhighlight:hover {
+  background-color: #FFFFDD;
+}
+
+ul.xlist li {
+  text-align: left;
+  float: right;
+  height: 100%;
+  list-style-type: none;
+  padding-top: .2em;
+  width: 100% !important;
+  margin-left: 5px;
+}
+
+ul.xlist li.space, ul.xlist li.page, ul.xlist li.comment, ul.xlist li.attachment {
+  background-position: 2px 3px;
+  background-repeat: no-repeat;
+}
+
+ul.xlist li.space {
+  background-image: url("../resources/icons/silk/folder.gif");
+}
+
+ul.xlist li.page {
+  background-image: url("../resources/icons/silk/page_white_text.gif");
+}
+
+ul.xlist li.comment {
+  background-image: url("../resources/icons/silk/comment.gif");
+}
+
+ul.xlist li.attachment {
+  background-image: url("../resources/icons/silk/attach.gif");
+  padding-bottom: 0;
+}
+
+ul.xlist li.xitem div.xitemcontainer {
+  text-indent: 1.5em;
+}
+
+ul.xlist li.xitem div.xitemcontainer ul.xlist {
+  text-indent: 0;
+}
+
+.xspacer {
+  display: none;
+}
+
+
+
+/* -----------------------Recent Changes--------------------------*/
+
+table.recentChanges { 
+	font-family: sans-serif;
+	font-weight: normal;
+  	padding: 0px 5px;
+  	text-decoration: none;
+}
+.recentChangesLeft { 
+	background-color: #EFEFEF;
+	text-align: center;
+  	padding: 10px 10px;
+	width: 100px;
+	vertical-align: top;
+}
+.recentChangesRight { 
+	background-color: #FFFFFF;
+	text-align: center;
+  	padding: 5px 5px;
+	vertical-align: top;
+}
+
+/* -----------------------Form--------------------------*/
+
+#wikititlefield{
+  height: 2em; /* Opera */
+  width: 100%;
+  font-size: 100%;
+  color: #4D4D4D;
+  letter-spacing: 1px;
+}
+#wikiobservacaofield{
+  height: 1.2em; /* Opera */
+  width: 100%;
+  font-size: 100%;
+  color: #4D4D4D;
+  letter-spacing: 1px;
+}
+
+#field-title {
+  color: #4D4D4D;
+  font: 700 1.2em / 1.4em sans-serif;
+  font-size: 1.30em;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 5px 0;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
+}
+
+/* -----------------------Form--------------------------*/
+table.wikipage
+	{
+		color:#000;
+		background:#FFF;
+		border-collapse:collapse;
+		border-spacing:0;
+	}
+table.wikipage
+	div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td
+	{
+		margin:0;padding:0;
+	}
+table.wikipage
+	fieldset,img
+	{
+		border:0;
+	}
+table.wikipage
+	address,caption,cite,code,dfn,em,strong,th,var,optgroup
+	{
+		font-style:inherit;		
+	}
+table.wikipage
+	del,ins
+	{
+		text-decoration:none;		
+	}
+table.wikipage
+	li
+	{
+		list-style:none;		
+	}
+table.wikipage
+	caption,th
+	{
+		text-align:left;	
+	}
+table.wikipage
+	h1,h2,h3,h4,h5,h6
+	{
+		font-size:100%;
+	}
+table.wikipage
+	q:before,q:after
+	{
+		content:'';
+	}
+table.wikipage
+	abbr,acronym
+	{
+		border:0;
+		font-variant:normal;
+	}
+table.wikipage
+	sup
+	{
+		vertical-align:baseline;
+	}
+table.wikipage
+	sub
+	{
+		vertical-align:baseline;
+	}
+table.wikipage
+	legend
+	{
+		color:#000;
+	}
+table.wikipage
+	input,button,textarea,select,optgroup,option
+	{
+		font-family:inherit;
+		font-size:inherit;
+		font-style:inherit;
+		font-weight:inherit;
+	}
+table.wikipage
+	input,button,textarea,select
+	{
+		*font-size:100%;
+	}
+		
+/*
+---------------------------------------
+Tabs
+---------------------------------------
+*/
+.layoutsection{
+  background:#FFFFFF;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+}
+.informationsection{
+  padding-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 25px;
+}
+
+.layoutsubsection{
+  background:#005A83;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 15px;
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+.floatcontainer{
+  overflow: hidden;
+}
+.xwikitabbar ul{
+  margin-top: 5px;
+  padding: 4px 0px;
+}
+.xwikitabbar li{
+  color: #FFF;
+  padding: 5px 15px;
+  display: inline;
+  list-style-type: none;
+}
+.xwikitabbar li a{
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+}
+.xwikitabbar li a:hover{
+  font-weight: bold;
+  background:#4791BC;
+  border-color: #4791BC;
+  text-decoration: none;
+}
+
+.xwikitabbar li.active{
+  color: #005A83;
+  font-weight: bold;
+  background:#FFF;
+  border-color: #FFF;
+}
+
+.xwikitabbar li.active a:hover{
+  cursor: default;
+}
+
+.informationsection fieldset.expanded .expands{
+  display: none;
+}
+
+.informationsection legend{
+  border: 1px solid #ddd;
+  padding: 2px 4px;
+}
+.informationsection fieldset{
+  border-color: #ddd;
+  border-style: solid;
+  padding: 8px 8px;
+}
+.informationsection legend{
+  font-size: 110%;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.informationsection label{
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.informationsection textarea{
+  width: 100%;
+}
+.button{
+  color: #FFFFFF;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  background-color: #005A83;
+  padding: 2px 4px;
+  text-decoration: none;
+}
+	
+/*
+---------------------------------------
+Comments
+---------------------------------------
+*/
+.informationcomment{
+  padding-left: 15px;
+  padding-right: 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+}
+.xwikicomment{
+	border:none;
+	padding:0 0 8px;
+}
+.commenttools{
+	display:block;
+	float:right;
+	margin-top:-1.2em;
+}
+.commenttool a{
+	background:transparent left top no-repeat;
+	display:block;
+	float:left;
+	height:30px;
+	line-height:0px;
+	margin:0 0 0 0px;
+	text-indent:30px;
+	width:30px;
+}
+.commentauthor{
+  font-size: 130%;
+  font-weight: 900;
+}
+.commentauthor a{
+  text-decoration: none;
+  color: #4791BC !important;
+}
+.commentdate {
+  color: #4D4D4D;
+  font-size: 90%;
+  text-decoration: none;
+}
+/*
+---------------------------------------
+Arquivos
+---------------------------------------
+*/
+
+.attachment{
+	font-size:85%;
+	padding:10px 0;
+}
+.attachment .information{
+	color:#4D4D4D;
+	overflow:hidden;
+}
+.attachment .mime,.attachment .name,.attachment .version{
+	float:left;
+	padding:0 8px 0 0;
+}
+.attachment .name{
+	font-size:1.35em;
+}
+.attachment .meta{
+	clear:left;
+}
+.attachment .size{
+	color:#888888;
+}
+.attachment .xwikibuttonlinks{
+	float:right;
+	width:40px;
+}
+.attachmentActionButton{
+	background-color:transparent;
+	border:none;
+	padding:2px 4px;
+	font-size:80%;
+	margin-bottom:4px;
+	background:transparent 2px center no-repeat;
+	padding-left:20px;
+	cursor:pointer;
+}
+.uploadFileInput{
+	margin:5px 10px!important;
+	}
+.attachment .xwikibuttonlinks a{
+	width:16px;
+	height:16px;
+	text-indent:-1000em;
+	overflow:hidden;
+	background:transparent left top no-repeat;
+	display:block;
+	float:right;
+	margin:0 0 0 4px;
+}
+#AddAttachment{
+	border-top:1px solid #D6E1E7;
+}
+
+/* ----------------History----------------*/
+.xwikidatatable{
+  width: 100%;
+}
+table.xwikidatatable{
+  margin: 8px auto;
+  /* width: 100%; */
+}
+table.xwikidatatable, table.xwikidatatable th{
+  border: 1px solid #DDD;
+  background-color: #D6E1E7;
+  color: #4D4D4D;
+}
+table.xwikidatatable td{
+  padding: 2px 8px;
+}
+#historycontent td{
+  padding: 2px;
+}
+.centered {
+  margin: auto;
+  text-align: center;
+}
+#historyform .currentversion td {
+  background-color: #FFFFDD;
+}
+
+#historyform  th {
+  border: 0;
+  border-bottom: 1px solid #D6E1E7;
+  font-size: .8em;
+  padding: 3px 4px;
+  text-transform: uppercase;
+}
+
+#historyform td{
+  border: 0;
+  border-bottom: 1px solid #D6E1E7;
+  color: #4D4D4D;
+  font-size: .85em;
+  padding: 3px 4px;
+}
+
+div.buttonwrapper {
+  display: inline;
+}
+/*
+---------------------------------------
+Search
+---------------------------------------
+*/
+
+#globalsearch {
+  vertical-align: middle;
+  text-align: center;
+  margin: 0px;
+  padding: 0px 0px 30px;
+}
+#globalsearch input{
+  vertical-align: middle;
+  font-size: 0.7em;
+  border: 1px solid;
+}
+#globalsearch input.button{
+  vertical-align: middle;
+  font-size: 1em;
+  border: 0px;
+  padding: 0px;
+}
+
+/*
+---------------------------------------
+Menu
+---------------------------------------
+*/
+
+/* CSS Tree menu styles */
+ol.tree
+{
+	padding: 0 0 0 10px;
+	width: 150px;
+}
+	li 
+	{ 
+		position: relative; 
+		margin-left: -5px;
+		list-style: none;
+	}
+	li.file
+	{
+		margin-left: -1px !important;
+	}
+		li.file a
+		{
+			background: url(../img/menu/document.png) 0 0 no-repeat;
+			color: #000000;
+			padding-left: 21px;
+			text-decoration: none;
+			display: block;
+		}
+		li.file a[href *= '.pdf']	{ background: url(../img/menu/document.png) 0 0 no-repeat; }
+		li.file a[href *= '.html']	{ background: url(../img/menu/document.png) 0 0 no-repeat; }
+		li.file a[href $= '.css']	{ background: url(../img/menu/document.png) 0 0 no-repeat; }
+		li.file a[href $= '.js']		{ background: url(../img/menu/document.png) 0 0 no-repeat; }
+	li input
+	{
+		position: absolute;
+		left: 0;
+		margin-left: 0;
+		opacity: 0;
+		z-index: 2;
+		cursor: pointer;
+		height: 1em;
+		width: 1em;
+		top: 0;
+	}
+		li input + ol
+		{
+			background: url(../img/menu/toggle-small-expand.png) 40px 0 no-repeat;
+			margin: -0.938em 0 0 -44px; /* 15px */
+			xdisplay: block;
+			height: 1em;
+		}
+		li input + ol > li { height: 0; overflow: hidden; margin-left: -14px !important; padding-left: 1px; }
+	li label
+	{
+		background: url(../img/menu/folder-horizontal.png) 15px 1px no-repeat;
+		cursor: pointer;
+		display: block;
+		padding-left: 37px;
+	}
+
+	li input:checked + ol
+	{
+		background: url(../img/menu/toggle-small.png) 40px 5px no-repeat;
+		margin: -1.25em 0 0 -44px; /* 20px */
+		padding: 1.563em 0 0 80px;
+		height: auto;
+	}
+		li input:checked + ol > li { height: auto; margin: 0 0 0.125em;  /* 2px */}
+		li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }

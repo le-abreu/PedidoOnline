@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition>
+		<div valign="top">
+			<h:form>
+				<p:menu style="width:200px; border: 0; margin-left:0px; font-size: 15px; font-family: Arial,sans-serif" effect="FADE">
+					<p:submenu id="subContencioso" label="#{msg['menu.financeiro.financeiro']}">
+
+						<p:menuitem value="#{msg['page.contasAPagar.header']}" actionListener="#{financialTransactionPaymentBean.restartAll}" action="#{financialTransactionPaymentBean.telaListPagamento}" ajax="false" immediate="true" />
+						<p:menuitem id="menuContasAReceber" action="#{financialTransactionRevenueBean.telaListReceita}" ajax="false" immediate="true" value="#{msg['page.contasAReceber.header']}" />
+						<p:menuitem id="menuReembolsoNew" actionListener="#{paymentReembolsoBean.restartVariaveisListReembolso}" action="#{paymentReembolsoBean.telaReembolsoList}" value="#{msg['page.reembolso.header']}"
+							rendered="#{organizationBean.userSession.organization.office}" ajax="false" immediate="true" />
+						<p:menuitem id="menuReembolso" url="/listReembolso.action?option=search" value="#{msg['page.reembolso.header']}" rendered="#{organizationBean.userSession.organization.office}" />
+						<p:menuitem id="menuReembolsoEnterprise" url="/paymentReembolsoEscritorioList.elaw" value="#{msg['page.reembolso.header']}" rendered="#{organizationBean.userSession.organization.enterprise}" />
+						<p:menuitem id="menuReceitas" url="/listRevenueRecord.action?option=search" value="#{msg['page.receitas.header']}" />
+						<p:menuitem id="menuBoletos" url="/boletoList.elaw" value="#{msg['page.boletos.header']}" />
+						<p:menuitem id="menuContasFuncionarios" url="/listFinancialAccountEmployee.action?option=search" value="#{msg['page.contasFuncionarios.header']}" />
+						<p:menuitem id="menuTransferencia" url="/transferFinancialTransaction.action" value="#{msg['page.transferencia.header']}" />
+						<p:menuitem id="menuFinancialAccountBank" action="/financialAccountBankList.elaw?faces-redirect=true" actionListener="#{financialAccountBankBean.restart}" value="Conta Bancaria" />
+						<p:menuitem id="menuAccountPlan" action="/accountPlan.elaw?faces-redirect=true" actionListener="#{accountPlanBean.createAccountGroupTree}" value="Plano de Contas" />
+						<p:menuitem id="menuTalaoCheque" action="#{talaoChequeBean.telaListTalaoCheque}" actionListener="#{talaoChequeBean.restartObjectsTelaList}" value="Talão de Cheque" ajax="false" immediate="true" />
+						<p:menuitem id="menuIndice" action="/indiceList.elaw?faces-redirect=true" actionListener="#{indiceBean.restart}" value="Indice" ajax="false" immediate="true" />
+
+					</p:submenu>
+
+					<p:submenu id="subMenuCaixa" label="Caixa">
+						<p:menuitem id="menuConciliacao" action="#{conciliacaoBean.telaConciliacao}" ajax="false" immediate="true" value="#{msg['page.conciliacao.header']}" />
+						<p:menuitem id="menuContaBancaria" value="Conta Bancária" actionListener="#{contaBancariaBean.restartObjectsTelaView}" action="#{contaBancariaBean.telaViewContaBancaria}" immediate="true" ajax="false" />
+						<p:menuitem id="menuContaCaixa" value="Conta Caixa" actionListener="#{contaCaixaBean.restartObjectsTelaView}" action="#{contaCaixaBean.telaViewContaCaixa}" immediate="true" ajax="false" />
+						<p:menuitem id="menuFluxoCaixa" value="Fluxo de Caixa" immediate="true" ajax="false" actionListener="#{fluxoCaixaBean.restartObjectsTelaView}" action="#{fluxoCaixaBean.telaViewFluxoCaixa}" />
+					</p:submenu>
+
+					<p:submenu id="subRelatorio" label="#{msg['relatorio.relatorios']}">
+						<p:menuitem id="menuContaCorrente" url="/financialAccountBankReport.action" value="#{msg['page.contaCorrente.header']}" />
+						<p:menuitem id="btnDRE" url="/relatorioDRE.elaw?faces-redirect=true" value="#{msg['page.dre.header']}" />
+						<p:menuitem id="menuMigracao" url="/listMigrateReembolso.action" value="#{msg['page.migracao.header']}" />
+					</p:submenu>
+
+					<p:submenu id="subContratosDeFaturamento" label="Contratos de Faturamento">
+						<p:menuitem id="linkContract" action="/contenciosoContractList.elaw" value="Contencioso" ajax="false" immediate="true" />
+						<p:menuitem id="linkConsultivoContract" action="/consultivoContractList.elaw" value="Consultivo" ajax="false" immediate="true" />
+					</p:submenu>
+
+					<p:submenu id="subConfiguracoes" label="#{msg['commons.configuracoes']}">
+						<p:menuitem id="linkFinancialRateio" action="#{financialTransactionRateioBean.telaListFinancialTransactionRateio}" value="Rateio" ajax="false" immediate="true" />
+						<p:menuitem id="menuConfiguracaoFinanceiro" action="#{financialConfigurationBean.telaViewFinancialConfiguration}" value="Configuração" ajax="false" immediate="true" />
+						<p:menuitem id="menuConfiguracaoPaymentReport" action="#{paymentReportBean.telaListPaymentReport}" value="Relatório Pagamentos" ajax="false" immediate="true" />
+					</p:submenu>
+
+					<p:submenu id="subWorkFlow" label="#{msg['workflow.header']}">
+
+						<p:menuitem id="linkWorkflowFinancialTransaction" action="#{workflowFinancialTransactionBean.telaWorkflowView}" value="#{msg['page.financialTransaction.menuworkflow']}" ajax="false" immediate="true" />
+
+						<p:menuitem id="linkWorkflowGroupFinancialTransactionGroup" action="#{workflowGroupFinancialTransactionGroupBean.list}" value="#{msg['page.financialTransaction.menuworkflowGroupFinancial']}" ajax="false" immediate="true" />
+
+						<p:menuitem id="linkWorkflowGroupFinancialTransaction" action="#{workflowGroupFinancialTransactionBean.telaWorkflowFinancialTransactionList}" value="#{msg['page.financialTransaction.menuworkflowGroup']}" ajax="false" immediate="true" />
+
+						<p:menuitem id="linkLawyerGroupFinancialTransaction" action="#{lawyerGroupFinancialTransactionBean.telaListLawyerGroup}" value="#{msg['page.financialTransaction.menuLawyerGroup']}" ajax="false" immediate="true" />
+
+						<p:menuitem id="linkFinancialTransactionLawyer" action="#{financialTransactionLawyerBean.returnListFinancialTransactionLawyer}" value="#{msg['page.financialTransaction.menuLawyer']}" ajax="false" immediate="true" />
+
+						<p:menuitem id="linkElawFieldFinancialTransaction" action="#{elawFieldFinancialTransactionBean.getListXhtml}" value="#{msg['page.financialTransaction.menuElawField']}" ajax="false" immediate="true" />
+
+						<p:menuitem id="linkAgendamentoTipoFinancialTransaction" action="#{agendamentoTipoFinancialTransactionBean.returnAgendamentoTipoFinancialTransaction}" value="#{msg['page.financialTransaction.menuAgendamentoTipo']}" ajax="false" immediate="true" />
+
+						<p:menuitem id="linkAgendamentoFinancialTransaction" action="#{agendamentoFinancialTransactionBean.returnAgendamentoFinancialTransaction}" value="#{msg['page.financialTransaction.menuAgendamento']}" ajax="false" immediate="true" />
+
+					</p:submenu>
+
+				</p:menu>
+			</h:form>
+		</div>
+	</ui:composition>
+</h:body>
+</html>

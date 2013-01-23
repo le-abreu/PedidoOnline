@@ -1,0 +1,294 @@
+BODY {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: white; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT: 90% "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, sans-serif; PADDING-TOP: 0px
+}
+CODE.blockcode {
+	BORDER-BOTTOM: gray 1px solid; BORDER-LEFT: gray 1px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: white; PADDING-LEFT: 5px; WIDTH: 400px; PADDING-RIGHT: 5px; DISPLAY: block; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid; PADDING-TOP: 5px
+}
+CODE {
+	BACKGROUND-COLOR: lightyellow
+}
+PRE {
+	BORDER-BOTTOM: gray 1px dashed; BORDER-LEFT: gray 1px dashed; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #efefef; PADDING-LEFT: 5px; WIDTH: 98%; PADDING-RIGHT: 5px; FONT-SIZE: 13px; BORDER-TOP: gray 1px dashed; BORDER-RIGHT: gray 1px dashed; PADDING-TOP: 5px
+}
+P.codearea {
+	BORDER-BOTTOM: gray 1px dashed; BORDER-LEFT: gray 1px dashed; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #efefef; PADDING-LEFT: 5px; WIDTH: 98%; PADDING-RIGHT: 5px; FONT-SIZE: 13px; BORDER-TOP: gray 1px dashed; BORDER-RIGHT: gray 1px dashed; PADDING-TOP: 5px
+}
+P.codearea {
+	MARGIN: 10px 0px
+}
+TEXTAREA.codecontainer {
+	BORDER-BOTTOM: gray 1px dashed; BORDER-LEFT: gray 1px dashed; BACKGROUND-COLOR: #efefef; MARGIN-TOP: 1em; PADDING-LEFT: 5px; WIDTH: 98%; HEIGHT: 150px; CLEAR: left; BORDER-TOP: gray 1px dashed; BORDER-RIGHT: gray 1px dashed
+}
+.selectcode {
+	MARGIN-TOP: 1em
+}
+.selectcode A.tabs {
+	BORDER-BOTTOM: gray 0px solid; BORDER-LEFT: gray 1px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; COLOR: navy; BORDER-TOP: gray 1px solid; MARGIN-RIGHT: 3px; BORDER-RIGHT: gray 1px solid; TEXT-DECORATION: none; PADDING-TOP: 0px
+}
+.selectcode A.tabs:visited {
+	COLOR: navy
+}
+.selectcode A.tabs:active {
+	COLOR: navy
+}
+.selectcode A.tabs:hover {
+	BACKGROUND-COLOR: #efefef; COLOR: navy
+}
+.submitform P {
+	MARGIN: 10px 0px
+}
+.submitform .inputbox {
+	BORDER-BOTTOM: gray 1px solid; BORDER-LEFT: gray 1px solid; WIDTH: 300px; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid
+}
+.submitform TEXTAREA {
+	BORDER-BOTTOM: gray 1px solid; BORDER-LEFT: gray 1px solid; WIDTH: 450px; HEIGHT: 150px; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid
+}
+.submitform .formbuttons {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+.codetitle {
+	PADDING-LEFT: 19px; BACKGROUND: url(squarebullet2.png) white no-repeat left center
+}
+.codeimages IMG {
+	BORDER-BOTTOM: gray 1px dashed; BORDER-LEFT: gray 1px dashed; BORDER-TOP: gray 1px dashed; MARGIN-RIGHT: 8px; BORDER-RIGHT: gray 1px dashed
+}
+.header {
+	MARGIN-BOTTOM: 10px; FONT-SIZE: 120%; FONT-WEIGHT: bold
+}
+.comment {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #ececec; PADDING-LEFT: 10px; WIDTH: 460px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+.commentfooter {
+	PADDING-LEFT: 58px; MARGIN-BOTTOM: 2em; BACKGROUND: url(arrow.gif) no-repeat 20px 0px; COLOR: #4a4a4a; FONT-SIZE: 90%; PADDING-TOP: 1px
+}
+#topbar {
+	BACKGROUND: url(topgradient.jpg) #ecf0fc repeat-x left top; COLOR: black
+}
+#logodiv {
+	WIDTH: 350px
+}
+#logodiv IMG {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+#toprightdiv {
+	TEXT-ALIGN: right; MARGIN: 10px 8px 0px 0px; WIDTH: 350px; FONT: bold 11px arial, sans-serif; FLOAT: right
+}
+#toprightdiv A {
+	LETTER-SPACING: 0.1pt; COLOR: navy; MARGIN-RIGHT: 4px; TEXT-DECORATION: none
+}
+#toprightdiv A:hover {
+	COLOR: blue
+}
+#toprightdiv #topform {
+	PADDING-BOTTOM: 0px; MARGIN: 0px 0px 5px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+#toprightdiv #keywords {
+	BORDER-BOTTOM: gray 1px solid; BORDER-LEFT: gray 1px solid; PADDING-BOTTOM: 5px; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; PADDING-LEFT: 5px; OUTLINE-WIDTH: medium; WIDTH: 210px; PADDING-RIGHT: 5px; FONT: 12px verdana, sans-serif; BACKGROUND: #fbfcfa; COLOR: #443; BORDER-TOP: gray 1px solid; MARGIN-RIGHT: 5px; BORDER-RIGHT: gray 1px solid; PADDING-TOP: 5px
+}
+#toprightdiv #keywords:focus {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+#toprightdiv #topformbutton {
+	BORDER-BOTTOM: #ccc 1px outset; BORDER-LEFT: #ccc 1px outset; PADDING-BOTTOM: 1px; MARGIN-TOP: 5px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; BACKGROUND: url(topbar3.jpg) repeat-x left top; COLOR: black; FONT-SIZE: 13px; BORDER-TOP: #ccc 1px outset; CURSOR: pointer; FONT-WEIGHT: bold; BORDER-RIGHT: #ccc 1px outset; PADDING-TOP: 1px
+}
+#ddtoptabs {
+	MARGIN: 0px auto; WIDTH: 870px
+}
+#ddtoptabs UL {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT: bold 12px Verdana; PADDING-TOP: 0px
+}
+#ddtoptabs LI {
+	MARGIN: 0px; DISPLAY: inline
+}
+#ddtoptabs LI A {
+	BORDER-BOTTOM: #282828 0px solid; BORDER-LEFT: #282828 1px solid; PADDING-BOTTOM: 6px; MARGIN: 0px 1px 0px 0px; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; DISPLAY: block; BACKGROUND: #223F1D; FLOAT: left; COLOR: white; BORDER-TOP: #282828 1px solid; BORDER-RIGHT: #282828 1px solid; TEXT-DECORATION: none; PADDING-TOP: 6px
+}
+#ddtoptabs LI A:visited {
+	COLOR: white
+}
+#ddtoptabs LI A:hover {
+	BORDER-BOTTOM-COLOR: black; BORDER-TOP-COLOR: black; BACKGROUND: #282828; BORDER-RIGHT-COLOR: black; BORDER-LEFT-COLOR: black
+}
+.mattblacktabs LI.selected A {
+	BORDER-BOTTOM-COLOR: black; BORDER-TOP-COLOR: black; BACKGROUND: #282828; BORDER-RIGHT-COLOR: black; BORDER-LEFT-COLOR: black
+}
+#ddtoptabsline {
+	PADDING-BOTTOM: 0px; LINE-HEIGHT: 8px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; BACKGROUND: #0A2A1B; HEIGHT: 8px; CLEAR: both; PADDING-TOP: 0px
+}
+#leftcolumn {
+	BACKGROUND-COLOR: white; MARGIN-TOP: 1em; WIDTH: 158px; FLOAT: left; CLEAR: left; MARGIN-RIGHT: 5px
+}
+.ddmarkermenu {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px 0px 8px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.ddmarkermenu LI {
+	PADDING-BOTTOM: 2px
+}
+.ddmarkermenu LI A {
+	BORDER-BOTTOM: #dadada 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 19px; PADDING-RIGHT: 0px; DISPLAY: block; BACKGROUND: url(arrowbullet.png) no-repeat left center; COLOR: #aa2716; FONT-SIZE: 90%; FONT-WEIGHT: bold; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+.ddmarkermenu LI A:visited {
+	COLOR: #aa2716
+}
+.ddmarkermenu A:hover {
+	BACKGROUND-COLOR: #f3f3f3; COLOR: #aa2716
+}
+.listmenu {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px 0px 8px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.listmenu LI {
+	PADDING-BOTTOM: 2px
+}
+.listmenu LI A {
+	BORDER-BOTTOM: #dadada 1px solid; PADDING-LEFT: 19px; DISPLAY: block; BACKGROUND: url(bullet.png) no-repeat left center; FONT-SIZE: 90%; TEXT-DECORATION: none
+}
+.listmenu A:hover {
+	BACKGROUND-COLOR: #f3f3f3
+}
+.listmenu2 LI A {
+	BACKGROUND: url(commentbullet.png) no-repeat left top
+}
+#leftcolumn .titlebar {
+	BORDER-BOTTOM: #7b9bc4 1px solid; PADDING-BOTTOM: 2px; TEXT-TRANSFORM: uppercase; MARGIN: 1em 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 2px; BACKGROUND: url(titlebg.jpg) black repeat-x left top; COLOR: white; FONT-WEIGHT: bold; PADDING-TOP: 2px
+}
+#middlecolumn {
+	BORDER-LEFT: #c3c3c3 1px solid; PADDING-BOTTOM: 1em; BACKGROUND-COLOR: transparent; MARGIN-TOP: 1em; PADDING-LEFT: 10px; WIDTH: 497px; PADDING-RIGHT: 10px; FLOAT: left
+}
+.headers {
+	BORDER-BOTTOM: #bbb 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #bbb 1px solid; PADDING-BOTTOM: 2px; PADDING-LEFT: 5px; WIDTH: 99%; PADDING-RIGHT: 0px; BACKGROUND: url(chromebg.gif) repeat-x center center; MARGIN-LEFT: 0px; FONT-SIZE: 120%; BORDER-TOP: #bbb 1px solid; BORDER-RIGHT: #bbb 1px solid; PADDING-TOP: 2px
+}
+.headers IMG {
+	FLOAT: right; MARGIN-RIGHT: 5px; PADDING-TOP: 5px
+}
+.headers SPAN {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 5px
+}
+.headers A.bar {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 5px
+}
+.headers A.bar {
+	COLOR: #273565; TEXT-DECORATION: none
+}
+.headers A:visited {
+	COLOR: #273565
+}
+.headers A:active {
+	COLOR: #273565
+}
+.headers A:hover {
+	COLOR: blue
+}
+.screenshots {
+	WIDTH: 150px; MARGIN-BOTTOM: 1em; FLOAT: left; FONT-SIZE: 90%; MARGIN-RIGHT: 10px
+}
+HTML > BODY .screenshots {
+	MARGIN-RIGHT: 15px
+}
+.screenshots DIV {
+	PADDING-BOTTOM: 5px; PADDING-LEFT: 2px; PADDING-RIGHT: 7px; BACKGROUND: url(thumbback.jpg) white no-repeat left top; PADDING-TOP: 2px
+}
+.screenshots DIV A IMG {
+	BORDER-BOTTOM: gray 1px solid; BORDER-LEFT: gray 1px solid; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid
+}
+.screenshots A:hover IMG {
+	BORDER-BOTTOM-COLOR: black; BORDER-TOP-COLOR: black; BORDER-RIGHT-COLOR: black; BORDER-LEFT-COLOR: black
+}
+.screenshots A:hover {
+	COLOR: black
+}
+.screenshots A {
+	PADDING-LEFT: 3px; TEXT-DECORATION: none
+}
+.csslisting {
+	MARGIN-BOTTOM: 20px; CLEAR: left
+}
+.csslisting .floatbox {
+	WIDTH: 155px; BACKGROUND: url(thumbback.jpg) white no-repeat left top; FLOAT: left
+}
+.csslisting .floatbox IMG {
+	BORDER-BOTTOM: gray 1px solid; BORDER-LEFT: gray 1px solid; MARGIN-BOTTOM: 10px; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid
+}
+.csslisting .floatbox A:hover IMG {
+	BORDER-BOTTOM-COLOR: black; BORDER-TOP-COLOR: black; BORDER-RIGHT-COLOR: black; BORDER-LEFT-COLOR: black
+}
+.csslisting .floatbox A:hover {
+	COLOR: gray
+}
+* HTML .csslisting .floatbox {
+	WIDTH: 152px
+}
+* HTML .csslisting P {
+	HEIGHT: 1%
+}
+.csslisting P {
+	MARGIN-LEFT: 155px; FONT-SIZE: 90%
+}
+* HTML .csslisting P {
+	MARGIN-LEFT: 152px
+}
+.csslisting P B {
+	FONT-SIZE: 110%
+}
+#blogcontainer {
+	BORDER-BOTTOM: #d8d8d8 1px solid; FONT-SIZE: 90%
+}
+#blogcontainer .title {
+	PADDING-BOTTOM: 0px; MARGIN-TOP: 10px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; MARGIN-BOTTOM: 0px; PADDING-TOP: 0px
+}
+#blogcontainer .info {
+	MARGIN-TOP: 1px; COLOR: gray
+}
+#blogcontainer P {
+	MARGIN: 8px 0px
+}
+DIV.info + P:first-letter {
+	FONT: bold 180% Arial; FLOAT: left; MARGIN-RIGHT: 3px
+}
+#rightcolumn {
+	BACKGROUND-COLOR: white; MARGIN-TOP: 1em; WIDTH: 170px; FLOAT: left
+}
+#middlecolumn .titlebar {
+	BORDER-BOTTOM: #dadada 1px solid; TEXT-TRANSFORM: uppercase; MARGIN: 1em 0px; PADDING-LEFT: 18px; BACKGROUND: url(squarebullet.png) white no-repeat left center; LETTER-SPACING: 1.5pt; COLOR: #686868; FONT-SIZE: 110%; FONT-WEIGHT: bold
+}
+#rightcolumn .titlebar {
+	BORDER-BOTTOM: #dadada 1px solid; TEXT-TRANSFORM: uppercase; MARGIN: 1em 0px; PADDING-LEFT: 18px; BACKGROUND: url(squarebullet.png) white no-repeat left center; LETTER-SPACING: 1.5pt; COLOR: #686868; FONT-SIZE: 110%; FONT-WEIGHT: bold
+}
+#rightcolumn .titlebar {
+	MARGIN-TOP: 10px
+}
+#rightcolumn .newscontainer {
+	BORDER-BOTTOM: #dadada 1px solid; BORDER-LEFT: #dadada 1px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: lightyellow; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; MARGIN-BOTTOM: 1em; FONT-SIZE: 90%; BORDER-TOP: #dadada 1px solid; BORDER-RIGHT: #dadada 1px solid; PADDING-TOP: 5px
+}
+#contentfooter {
+	PADDING-BOTTOM: 1em; FONT-FAMILY: Verdana; MARGIN-LEFT: 173px; CLEAR: both; FONT-SIZE: 11px
+}
+#footerarea {
+	TEXT-ALIGN: center; BACKGROUND: url(footer.jpg) #ecf0fc repeat-x left top; HEIGHT: 50px; CLEAR: left; PADDING-TOP: 15px
+}
+#footermenu {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FLOAT: right; FONT-SIZE: 90%; PADDING-TOP: 0px
+}
+#footermenu UL {
+	BORDER-BOTTOM: #dfdfdf 1px solid; BORDER-LEFT: #dfdfdf 0px solid; MARGIN: 0px; PADDING-LEFT: 0px; FLOAT: left; BORDER-TOP: #dfdfdf 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: #dfdfdf 0px solid
+}
+#footermenu UL LI {
+	DISPLAY: inline
+}
+#footermenu UL LI A {
+	PADDING-BOTTOM: 4px; PADDING-LEFT: 6px; PADDING-RIGHT: 6px; BACKGROUND: url(menudivide.gif) #f3f5fb repeat-y right top; FLOAT: left; COLOR: gray; FONT-WEIGHT: bold; TEXT-DECORATION: none; PADDING-TOP: 2px
+}
+#footermenu UL LI A:hover {
+	BORDER-BOTTOM: gray 4px solid; PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #f3f3f3; COLOR: #565656
+}
+.clearfix:after {
+	DISPLAY: block; HEIGHT: 0px; VISIBILITY: hidden; CLEAR: both; CONTENT: "."
+}
+.clearfix {
+	DISPLAY: inline-table
+}
+* HTML .clearfix {
+	HEIGHT: 1%
+}
+.clearfix {
+	DISPLAY: block
+}

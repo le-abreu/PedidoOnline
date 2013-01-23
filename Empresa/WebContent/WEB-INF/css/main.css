@@ -1,0 +1,427 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+body {
+	margin: 0;
+	/*background: #D3D3D3;*/
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	/*color: #0000A0;99CD8F*/
+}
+
+h1, h2, h3 {
+	margin: 0;
+	text-transform: uppercase;
+	letter-spacing: .15em;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	font-size: 1.8em;
+}
+
+h2 {
+	font-size: 1.4em;
+}
+
+h3 {
+	font-size: 1em;
+}
+
+p, ul, ol {
+	margin-top: 0;
+	line-height: 180%;
+}
+
+ul, ol {
+}
+
+a {
+	text-decoration: none;
+	color: #151B54;
+}
+
+a:hover {
+	background: none;
+}
+
+/* Header */
+
+#header {
+	width: 750px;
+	height: 160px;
+	margin: 0 auto;
+	background: #000000;
+}
+
+/* Logo */
+
+#logo {
+	float: left;
+}
+
+#logo h1 {
+	float: center;
+	margin-left: 100px;
+	padding-top: 40px;
+	text-transform: uppercase;
+	font-size: 1.0em;
+}
+
+#logo p {
+	float: center;
+	margin-left: 100px;
+	margin: 0;
+	padding: 45px 0 0 2px;
+	text-transform: lowercase;
+	letter-spacing: .2em;
+	font: bold 1.0em Arial, Helvetica, sans-serif;
+} 
+
+#logo a {
+	background: none;
+	text-decoration: none;
+	color: #1b2b74;
+}
+
+/* Search */
+
+#search {
+	float: right;
+	width: 200px;
+	padding-top: 86px;
+}
+
+#search form {
+	width: 200px;
+	height: 41px;
+	margin: 0;
+	padding: 15px 0 0 10px;
+}
+
+#search fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+#search-text {
+	border: none;
+	text-transform: lowercase;
+	border: 1px #000000 solid;
+	font: bold 1.2em Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+}
+
+#search-submit {
+	display: none;
+}
+
+/* Menu */
+
+#menu {
+	width: 740px;
+	height: 25px;
+	margin: 0 auto;
+}
+
+#menu ul {
+	margin: 0;
+	margin-left: 1px;
+	padding: 1px 0 0 1px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li {
+	float: left;
+	margin-right: 3px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#menu a {
+	margin-right: 3px;
+	padding: 10px 10px;
+	background: #000000;
+	text-transform: lowercase;
+	text-decoration: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+#menu a:hover, #menu .current_page_item a {
+	color: #FFFFFF;
+}
+
+#menu a:hover {
+	text-decoration: underline;
+}
+
+/* Menu Admin */
+
+#menuadmin {
+	width: 620px;
+	height: 25px;
+	margin: 0 auto;
+}
+
+#menuadmin ul {
+	margin: 0;
+	margin-left: 1px;
+	padding: 1px 0 0 1px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menuadmin li {
+	float: left;
+	margin-right: 3px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FF0000;
+}
+
+#menuadmin a {
+	margin-right: 3px;
+	padding: 10px 10px;
+	background: #FF0000;
+	text-transform: lowercase;
+	text-decoration: none;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+#menuadmin a:hover, #menu .current_page_item a {
+	color: #000000;
+}
+
+#menuadmin a:hover {
+	text-decoration: underline;
+}
+
+/* Page */
+
+#page {
+	width: 1040px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+/* Content */
+
+#errors {
+	padding: 2px 10px;
+	background: #C0C0C0;
+	border-top: 1px solid #C0C0C0;
+	border-bottom: 1px solid #C0C0C0;
+	text-transform: uppercase;
+	text-align: left;
+	font-size: 5px;
+}
+
+#content {
+	float: left;
+	width: 1060px;
+}
+
+.post {
+}
+
+.post .meta {
+	padding: 5px 0;
+	color: #C0C0C0;
+}
+
+.post .title {
+	padding: 5px 0;
+	color: #000000;
+}
+
+.post .title a {
+	background: none;
+}
+
+.post .meta {
+	padding: 2px 10px;
+	background: #C0C0C0;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	text-transform: uppercase;
+	text-align: left;
+	font-size: 9px;
+	color: #C11B17;
+}
+
+.post .entry {
+	padding: 20px 0;
+	text-align: justify;
+}
+
+.post .pagetitle {
+	color: #99CD8F;
+	/*color: #151B54;*/
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.post .formtitle {
+	font-size: 14px;
+	color: #000000;
+	/*color: #151B54;*/
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.post .formsubtitle {
+	font-size: 12px;
+	text-align: left;
+	color: #000000;
+	/*color: #151B54;*/
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.post .forminfo {
+	font-size: 11px;
+	text-align: justify;
+	color: #000000;
+	/*color: #151B54;*/
+	text-transform: uppercase;
+}
+
+.tabledisplay {
+}
+
+.tabledisplay .tabletitle {
+	font-size: 14px;
+	color: #000000;
+	/*color: #151B54;*/
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.tabledisplay .tablesubtitle {
+	font-size: 12px;
+	color: #000000;
+	/*color: #151B54;*/
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.tabledisplay .tableinfo {
+	font-size: 10px;
+	text-align: justify;
+	color: #000000;
+	/*color: #2B3856;*/
+	text-transform: uppercase;
+}
+.printdisplay {
+}
+
+.printdisplay .printtitle {
+	font-size: 10px;
+	color: #151B54;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.printdisplay .printsubtitle {
+	font-size: 9px;
+	color: #151B54;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.tabledisplay .printinfo {
+	font-size: 9px;
+	text-align: justify;
+	color: #2B3856;
+	text-transform: uppercase;
+	font-weight: normal;
+}
+
+/* Sidebar */
+
+#sidebar {
+	float: right;
+	width: 258px;
+	background: #E8E8E8;
+	border: 1px solid #D3D3D3;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li {
+}
+
+#sidebar li ul {
+	padding: 20px;
+}
+
+#sidebar li li {
+}
+
+#sidebar h2 {
+	padding: 5px 10px;
+	background: #000000;
+	font-size: 1.2em;
+}
+
+#sidebar p {
+	padding: 20px;
+}
+
+/* Calendar */
+
+#calendar {
+}
+
+#calendar_wrap {
+	padding: 20px;
+}
+
+#calendar table {
+	width: 100%;
+}
+
+#calendar tbody td {
+	text-align: center;
+}
+
+#calendar #next {
+	text-align: right;
+}
+
+/* Footer */
+
+#footer {
+	width: 750px;
+	margin: 0 auto;
+	padding: 20px 0;
+	background: #FFFFFF;
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+#footer p {
+	margin: 0;
+	line-height: normal;
+	font-size: 9px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #000000;
+}

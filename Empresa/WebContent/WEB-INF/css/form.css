@@ -1,0 +1,42 @@
+body {
+	font: 0.8em/21px arial,sans-serif;
+}
+
+.select {
+	position: absolute;
+	width: 160px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+	height: 21px;
+	padding: 0 24px 0 8px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	font-weight: bold;
+	background: url(../img/buttons/select_big.png) no-repeat;
+	overflow: hidden;
+}
+
+.textfield {
+width: 357px;
+height: 21px;
+background: url(../img/buttons/textfield.jpg) no-repeat;
+border: none;
+padding: 2px 0 0 5px;
+font: 12px/21px arial,sans-serif;
+}
+
+.textfield_med {
+width: 207px;
+height: 21px;
+background: url(../img/buttons/textfield_med.png) no-repeat;
+border: none;
+padding: 2px 0 0 5px;
+font: 12px/21px arial,sans-serif;
+} 
+
+.datefield {
+width: 97px;
+height: 21px;
+background: url(../img/buttons/datefield.png) no-repeat;
+border: none;
+padding: 2px 0 0 5px;
+font: 12px/21px arial,sans-serif;
+} 

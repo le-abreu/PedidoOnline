@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<object classid="clsid:3B806E40-A43A-4026-B792-673074EF0609" id="BemaDPWeb" width="14" height="14">
+		</object>
+		<title>
+			<ui:insert name="title" />
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="expires" content="-1" />
+		<script type="text/javascript" src="javascript/ckeditor/ckeditor.js"></script>
+		<script src="javascript/ckeditor/_sample/sample.js" type="text/javascript"></script>
+		
+		<script language="JavaScript">	
+			function popUpWindow(pagina, largura, altura)
+			{	
+				window.open(pagina,'', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=no,width='+largura+',height='+altura+',left=20,top=20');
+			}
+		
+			function IniciaPorta(Porta){				
+				iRetorno = BemaDPWeb.IniciaPorta(Porta);
+				if(iRetorno != 1){
+					VerificaRetorno(iRetorno);
+				}
+			}
+			function FechaPorta(){
+				iRetorno = BemaDPWeb.FechaPorta()
+				if(iRetorno != 1){
+					VerificaRetorno(iRetorno);
+				}
+			}
+			function ImprimeCheque(Banco, Valor, Favorecido, Cidade, Data, Mensagem){
+				IniciaPorta('COM1');
+				iRetorno = BemaDPWeb.ImprimeCheque(Banco, Valor, Favorecido, Cidade, Data, Mensagem);
+					VerificaRetorno(iRetorno);
+				FechaPorta();
+			}
+			
+			function VerificaRetorno(IRetorno){		
+				switch (IRetorno)
+				{
+					case 0 : alert("Erro de Comunicação com a Impressora. Verifique.");
+						break;			
+				    case 1 : alert("Função Executada com Sucesso.");
+						break;
+				    case -2 : alert("Parâmetro de Comando Inválido. Verifique.");
+						break;
+				    case -3 : alert("Banco Não Encontrado.");
+						break;
+					default: 
+						alert("Unknown error." + IRetorno);	
+						break;
+				}
+			}
+		</script>
+		
+		<link href="javascript/ckeditor/_sample/sample.css" rel="stylesheet" type="text/css"/>
+	</h:head>
+
+	<h:body class="yui-skin-sam" style="padding:0; margin:0;">
+		<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" style="margin:0;padding:0;">
+			<tr>
+				<td colspan="2">
+					<ui:insert name="dock">
+						<ui:include src="dock.xhtml" />
+					</ui:insert>
+				</td>
+			</tr>
+			<tr>
+				<td width="214" valign="top">
+					<ui:insert name="menu">
+						<ui:include src="menuEmpresa.xhtml" />
+					</ui:insert>	
+				</td>
+				<td valign="top">
+					<ui:insert name="content">
+						<ui:include src="/pag/index.xhtml" />
+					</ui:insert>
+				</td>
+			</tr>
+		</table>
+	</h:body>
+</html>
