@@ -154,10 +154,12 @@
 					<h:form id="dockForm">
 					<div style="width: 60%; position:absolute; top:0; left:50; background-color: #000000;">
 						<p:dock position="top" halign="center" styleClass="ui-dock-container-top">
-							<p:menuitem icon="/images/dock/home.png" url="homePage.elaw" target="_parent" style="color:#FFFFFF;" value="Home Page"/>
+							<p:menuitem icon="/content/images/dock/home.png" url="homePage.elaw" target="_parent" style="color:#FFFFFF;" value="Home Page"/>
 							
-							<p:menuitem icon="/images/dock/financeiro.png" url="/financialTransactionPaymentList.elaw" target="_parent" style="color:#FFFFFF;"  value="#{msg['menu.financeiro.financeiro']}"/>
-							<p:menuitem icon="/images/dock/logout.png" url="/j_spring_security_logout" target="_parent" style="color:#FFFFFF;" value="#{msg['commons.logout']}"/>
+							<p:menuitem icon="/content/images/dock/rh.png" url="/content/pag/rHfuncionarioList.sys" target="_parent" style="color:#FFFFFF;"  value="RH"/>
+							<p:menuitem icon="/content/images/dock/tarefas.png" url="/j_spring_security_logout" target="_parent" style="color:#FFFFFF;" value="Hora Extra"/>
+							<p:menuitem icon="/content/images/dock/financeiro.png" url="/j_spring_security_logout" target="_parent" style="color:#FFFFFF;" value="Folha de Pagamento"/>
+							<p:menuitem icon="/content/images/dock/logout.png" url="/j_spring_security_logout" target="_parent" style="color:#FFFFFF;" value="Logout"/>
 						</p:dock>
 	
 						<h:panelGrid id="alertGrid" columns="1">
@@ -171,42 +173,13 @@
 				</td>
 				<td align="right">
 					<h:form prependId="false">
-						<a href="http://www.elaw.com.br" title="Clique Aqui para Visualizar o Site da Elaw" alt="Clique Aqui para Visualizar o Site da Elaw">
-						<img src="img/logo/elaw.png" border="0"/>
+						<a href="http://www.elaw.com.br" title="Clique Aqui para Visualizar o Site da Sys" alt="Clique Aqui para Visualizar o Site da Sys">
+						<img src="/content/images/logoSys.gif" border="0"/>
 						</a>	
 					</h:form> 
 				</td>
 			</tr>
 		</table>
-			
-		<h:form prependId="false" id="taskForm">
-	    	<p:dialog id="agendamentoAlertDialogView" widgetVar="agendamentoAlertDialog" showEffect="fold" hideEffect="fold" header="Agendamentos" 
-	    				resizable="true" width="800" maximizable="true" closable="true" position="bottom" height="500" style="margin-left: 5px" modal="true">  
-	    		<h:panelGrid id="agendamentoAlertDialogViewGrid" style="font-size: 12px; align: left; margin-left: 5px;" columns="1">			    				
-	    								    				
-					<h:panelGrid id="pgLegendaStatus" columns="9">
-						<h:outputText id="statusText" value="Status: &nbsp;" style="color:black; margin-left: 30px" />
-					
-						&nbsp;
-						<h:graphicImage id="statusMetaIcon0" value="/img/buttons/checkbox_red.png" width="10px" />
-						<h:outputText id="statusMetaText0" value="&nbsp;Atrasado" style="color:red" />
-						
-						&nbsp;
-						<h:graphicImage id="statusMetaIcon1" value="/img/buttons/checkbox_orange.png" width="10px" />
-						<h:outputText id="statusMetaText1" value="&nbsp;Pendente" style="color:orange" />
-						
-						&nbsp;
-						<h:graphicImage id="statusMetaIcon2" value="/img/buttons/checkbox_green.png" width="10px" />
-						<h:outputText id="statusMetaText2" value="&nbsp;Confirmado" style="color:green" />
-						
-						&nbsp;
-						<h:graphicImage id="statusMetaIcon3" value="/img/buttons/checkbox_blue.png" width="10px" />	
-						<h:outputText id="statusMetaText3" value="&nbsp;Cancelado" style="color:blue" />
-					</h:panelGrid>
 		
-					 
-				</h:panelGrid>
-	     	</p:dialog>  					     	
-	     	
-		</h:form>
+		
 </ui:composition>

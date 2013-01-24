@@ -1,11 +1,12 @@
 package br.com.empresa.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Id;
 
 
-public class FuncionarioBean {
+public class Funcionario {
 	
 	@Id
 	public Long id = new Long(0);
@@ -20,10 +21,37 @@ public class FuncionarioBean {
 	
 	public Date dataAniversario;
 	
-	public String genero;
+	public Integer genero;
 	
 	public Endereco endereco;
 	
+	public Integer status;
+	
+	public Date dataContratacao;
+	
+	public String nomeDoPai;
+	
+	public String nomeDaMae;
+	
+	public String telefone;
+	
+	public String celular;
+	
+	public String Salario;
+	
+	public Date dataDemisao;
+	
+	public String horarioInicio;
+	
+	public String horarioFim;
+	
+	public String cargo;
+	
+	public String setor;
+	
+	public Funcionario gestor;
+	
+	public List<Funcionario> subordinado;
 	
 	public Endereco getEndereco() {
 		return endereco;
@@ -31,6 +59,47 @@ public class FuncionarioBean {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getSalario() {
+		return Salario;
+	}
+
+	public void setSalario(String salario) {
+		Salario = salario;
+	}
+
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
+	}
+
+	public Funcionario getGestor() {
+		return gestor;
+	}
+
+	public void setGestor(Funcionario gestor) {
+		this.gestor = gestor;
+	}
+
+	public List<Funcionario> getSubordinado() {
+		return subordinado;
+	}
+
+	public void setSubordinado(List<Funcionario> subordinado) {
+		this.subordinado = subordinado;
 	}
 
 	public Long getId() {
@@ -81,12 +150,21 @@ public class FuncionarioBean {
 		this.dataAniversario = dataAniversario;
 	}
 
-	public String getGenero() {
+
+	public Integer getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Integer genero) {
 		this.genero = genero;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public Endereco getEnderco() {
@@ -97,13 +175,6 @@ public class FuncionarioBean {
 		this.endereco = enderco;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 	public Date getDataContratacao() {
 		return dataContratacao;
@@ -145,19 +216,7 @@ public class FuncionarioBean {
 		this.celular = celular;
 	}
 
-	public String status;
-	
-	public Date dataContratacao;
-	
-	public String nomeDoPai;
-	
-	public String nomeDaMae;
-	
-	public String telefone;
-	
-	public String celular;
-	
-	
+
 	
 	
 	
