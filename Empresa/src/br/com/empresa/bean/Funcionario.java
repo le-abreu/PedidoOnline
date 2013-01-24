@@ -3,9 +3,8 @@ package br.com.empresa.bean;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Id;
-
-
 public class Funcionario {
 	
 	@Id
@@ -43,6 +42,30 @@ public class Funcionario {
 	
 	public String horarioInicio;
 	
+	public Date getDataDemisao() {
+		return dataDemisao;
+	}
+
+	public void setDataDemisao(Date dataDemisao) {
+		this.dataDemisao = dataDemisao;
+	}
+
+	public String getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public void setHorarioInicio(String horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+	public String getHorarioFim() {
+		return horarioFim;
+	}
+
+	public void setHorarioFim(String horarioFim) {
+		this.horarioFim = horarioFim;
+	}
+
 	public String horarioFim;
 	
 	public String cargo;

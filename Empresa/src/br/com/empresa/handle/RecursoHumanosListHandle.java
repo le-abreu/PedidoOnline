@@ -8,22 +8,73 @@ import javax.faces.bean.ManagedBean;
 
 import br.com.empresa.bean.Funcionario;
 
-
-@ManagedBean(name="rh_list")
+@ManagedBean(name = "rh_list")
 public class RecursoHumanosListHandle {
-	
-	public String pesquisa;
 
-	public Funcionario novoFuncionario;
-	
-	public Boolean inserirFuncionario = new Boolean(true);
-	
 	public Funcionario getNovoFuncionario() {
 		return novoFuncionario;
 	}
 
 	public void setNovoFuncionario(Funcionario novoFuncionario) {
 		this.novoFuncionario = novoFuncionario;
+	}
+
+	public String pesquisa;
+
+	public Funcionario novoFuncionario = new Funcionario();
+
+	public Boolean inserirFuncionario = true;
+
+	public String status;
+
+	public List<Funcionario> listaFuncionario = new ArrayList<>();
+
+	public Funcionario funcionarioSelecionado = new Funcionario();
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getPesquisa() {
+		return pesquisa;
+	}
+
+	public void setPesquisa(String pesquisa) {
+		this.pesquisa = pesquisa;
+	}
+
+	public void listaFuncionarios() {
+
+		Funcionario a = new Funcionario();
+		a.setCarteiraTrabalho("fff");
+		a.setCelular("2443");
+		a.setDataAniversario(new Date());
+		a.setDataContratacao(new Date());
+		// a.setGenero("");
+		a.setNome("Rodrigo");
+		a.setNomeDoPai("Vicente");
+		a.setNomeDaMae("Cleusa");
+		listaFuncionario.add(a);
+
+	}
+
+	public void exportaExcel() {
+
+	}
+
+	public void exportaPdf() {
+
+	}
+
+	public void editar() {
+	}
+
+	public Boolean getInserirFuncionario() {
+		return inserirFuncionario;
 	}
 
 	public List<Funcionario> getListaFuncionario() {
@@ -42,71 +93,14 @@ public class RecursoHumanosListHandle {
 		this.funcionarioSelecionado = funcionarioSelecionado;
 	}
 
-	public String status;
-	
-	public List<Funcionario> listaFuncionario = new ArrayList<>(); 
-	
-	public  Funcionario funcionarioSelecionado = new Funcionario();
-	
-	
-	public String getStatus() {
-		return status;
+	public void setInserirFuncionario(Boolean inserirFuncionario) {
+		this.inserirFuncionario = inserirFuncionario;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	public void inserirNovoFunc() {
 
-
-	public String getPesquisa() {
-		return pesquisa;
-	}
-
-	public void setPesquisa(String pesquisa) {
-		this.pesquisa = pesquisa;
-	}
-	
-	
-	public void listaFuncionarios(){
-		
-		Funcionario a = new Funcionario();
-		a.setCarteiraTrabalho("fff");
-		a.setCelular("2443");
-		a.setDataAniversario(new Date());
-		a.setDataContratacao(new Date());
-//		a.setGenero("");
-		a.setNome("Rodrigo");
-		a.setNomeDoPai("Vicente");
-		a.setNomeDaMae("Cleusa");
-		listaFuncionario.add(a);
-		
-		
-	}
-	
-	
-	
-	public void novoFuncionario(){
-		
 		novoFuncionario.getCargo();
-		
-	}
-	
-	
-	public void exportaExcel(){
-		
-		
-		
-		
-	}
-	
-public void exportaPdf(){
-		
-		
-		
-		
-	}
 
-public void editar(){
-}
+	}
 
 }
