@@ -6,47 +6,31 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-import br.com.empresa.bean.FuncionarioBean;
+import br.com.empresa.bean.Funcionario;
 
-
-@ManagedBean(name="rh_list")
+@ManagedBean(name = "rh_list")
 public class RecursoHumanosListHandle {
-	
-	public String pesquisa;
 
-	public FuncionarioBean novoFuncionario;
-	
-	public FuncionarioBean getNovoFuncionario() {
+	public Funcionario getNovoFuncionario() {
 		return novoFuncionario;
 	}
 
-	public void setNovoFuncionario(FuncionarioBean novoFuncionario) {
+	public void setNovoFuncionario(Funcionario novoFuncionario) {
 		this.novoFuncionario = novoFuncionario;
 	}
 
-	public List<FuncionarioBean> getListaFuncionario() {
-		return listaFuncionario;
-	}
+	public String pesquisa;
 
-	public void setListaFuncionario(List<FuncionarioBean> listaFuncionario) {
-		this.listaFuncionario = listaFuncionario;
-	}
+	public Funcionario novoFuncionario = new Funcionario();
 
-	public FuncionarioBean getFuncionarioSelecionado() {
-		return funcionarioSelecionado;
-	}
-
-	public void setFuncionarioSelecionado(FuncionarioBean funcionarioSelecionado) {
-		this.funcionarioSelecionado = funcionarioSelecionado;
-	}
+	public Boolean inserirFuncionario = true;
 
 	public String status;
-	
-	public List<FuncionarioBean> listaFuncionario = new ArrayList<>(); 
-	
-	public  FuncionarioBean funcionarioSelecionado = new FuncionarioBean();
-	
-	
+
+	public List<Funcionario> listaFuncionario = new ArrayList<>();
+
+	public Funcionario funcionarioSelecionado = new Funcionario();
+
 	public String getStatus() {
 		return status;
 	}
@@ -55,7 +39,6 @@ public class RecursoHumanosListHandle {
 		this.status = status;
 	}
 
-
 	public String getPesquisa() {
 		return pesquisa;
 	}
@@ -63,48 +46,61 @@ public class RecursoHumanosListHandle {
 	public void setPesquisa(String pesquisa) {
 		this.pesquisa = pesquisa;
 	}
-	
-	
-	public void listaFuncionarios(){
-		
-		FuncionarioBean a = new FuncionarioBean();
+
+	public void listaFuncionarios() {
+
+		Funcionario a = new Funcionario();
 		a.setCarteiraTrabalho("fff");
 		a.setCelular("2443");
 		a.setDataAniversario(new Date());
 		a.setDataContratacao(new Date());
-		a.setGenero("");
+		// a.setGenero("");
 		a.setNome("Rodrigo");
 		a.setNomeDoPai("Vicente");
 		a.setNomeDaMae("Cleusa");
 		listaFuncionario.add(a);
-		
-		
-	}
-	
-	
-	
-	public void novoFuncionario(){
-		
-		
-		
-	}
-	
-	
-	public void exportaExcel(){
-		
-		
-		
-		
-	}
-	
-public void exportaPdf(){
-		
-		
-		
-		
+
 	}
 
-public void editar(){
-}
+	public void exportaExcel() {
+
+	}
+
+	public void exportaPdf() {
+
+	}
+
+	public void editar() {
+	}
+
+	public Boolean getInserirFuncionario() {
+		return inserirFuncionario;
+	}
+
+	public List<Funcionario> getListaFuncionario() {
+		return listaFuncionario;
+	}
+
+	public void setListaFuncionario(List<Funcionario> listaFuncionario) {
+		this.listaFuncionario = listaFuncionario;
+	}
+
+	public Funcionario getFuncionarioSelecionado() {
+		return funcionarioSelecionado;
+	}
+
+	public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
+		this.funcionarioSelecionado = funcionarioSelecionado;
+	}
+
+	public void setInserirFuncionario(Boolean inserirFuncionario) {
+		this.inserirFuncionario = inserirFuncionario;
+	}
+
+	public void inserirNovoFunc() {
+
+		novoFuncionario.getCargo();
+
+	}
 
 }
