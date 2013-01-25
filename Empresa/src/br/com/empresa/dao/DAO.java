@@ -9,7 +9,7 @@ import javax.persistence.Query;
 
 import br.com.empresa.util.JPAUtil;
 
-public class DAO<T> {
+abstract class DAO<T> {
 
 	private EntityManager em;
 	private Class<?> persistentClass;
@@ -68,6 +68,8 @@ public class DAO<T> {
 			getEm().remove(t);
 			trans.commit();
 		} catch (Exception e) {
+			
+			
 			e.printStackTrace();
 		}
 
