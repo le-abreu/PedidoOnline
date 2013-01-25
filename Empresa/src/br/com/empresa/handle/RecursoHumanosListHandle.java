@@ -11,25 +11,20 @@ import br.com.empresa.bean.Funcionario;
 @ManagedBean(name = "rh_list")
 public class RecursoHumanosListHandle {
 
+	public String pesquisa;
+	public Funcionario novoFuncionario = new Funcionario();
+	public Boolean inserirFuncionario = true;
+	public String status;
+	public List<Funcionario> listaFuncionario = new ArrayList<>();
+	public Funcionario funcionarioSelecionado = new Funcionario();
+
 	public Funcionario getNovoFuncionario() {
 		return novoFuncionario;
 	}
-
+	
 	public void setNovoFuncionario(Funcionario novoFuncionario) {
 		this.novoFuncionario = novoFuncionario;
 	}
-
-	public String pesquisa;
-
-	public Funcionario novoFuncionario = new Funcionario();
-
-	public Boolean inserirFuncionario = true;
-
-	public String status;
-
-	public List<Funcionario> listaFuncionario = new ArrayList<>();
-
-	public Funcionario funcionarioSelecionado = new Funcionario();
 
 	public String getStatus() {
 		return status;
@@ -47,31 +42,6 @@ public class RecursoHumanosListHandle {
 		this.pesquisa = pesquisa;
 	}
 
-	public void listaFuncionarios() {
-
-		Funcionario a = new Funcionario();
-		a.setCarteiraTrabalho("fff");
-		a.setCelular("2443");
-		a.setDataAniversario(new Date());
-		a.setDataContratacao(new Date());
-		// a.setGenero("");
-		a.setNome("Rodrigo");
-		a.setNomeDoPai("Vicente");
-		a.setNomeDaMae("Cleusa");
-		listaFuncionario.add(a);
-
-	}
-
-	public void exportaExcel() {
-
-	}
-
-	public void exportaPdf() {
-
-	}
-
-	public void editar() {
-	}
 
 	public Boolean getInserirFuncionario() {
 		return inserirFuncionario;
@@ -98,9 +68,29 @@ public class RecursoHumanosListHandle {
 	}
 
 	public void inserirNovoFunc() {
-
 		novoFuncionario.getCargo();
-
 	}
 
+	public void listaFuncionarios() {
+		Funcionario funcionario = new Funcionario();
+		funcionario.setCarteiraTrabalho("fff");
+		funcionario.setCelular("2443");
+		funcionario.setDataAniversario(new Date());
+		funcionario.setDataContratacao(new Date());
+		funcionario.setNome("Rodrigo");
+		funcionario.setNomeDoPai("Vicente");
+		funcionario.setNomeDaMae("Cleusa");
+		listaFuncionario.add(funcionario);
+	}
+	
+	public void exportaExcel() {
+		
+	}
+	
+	public void exportaPdf() {
+		
+	}
+	
+	public void editar() {
+	}
 }

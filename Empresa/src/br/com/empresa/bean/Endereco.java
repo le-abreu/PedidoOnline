@@ -2,13 +2,44 @@ package br.com.empresa.bean;
 
 public class Endereco {
 
-public String rua;
+	private String rua;
 
-public String lougradouro;
+	private String lougradouro;
 
-public String numero;
+	private String numero;
 
-public String complemento;
+	private String complemento;
 
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
+	public String getLougradouro() {
+		return lougradouro;
+	}
+
+	public void setLougradouro(String lougradouro) {
+		this.lougradouro = lougradouro;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
 
 }

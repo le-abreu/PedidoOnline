@@ -19,6 +19,9 @@ public class Produto {
 	private String nome;
 	
 	@Column()
+	private String codigoBarra;
+	
+	@Column()
 	private String categoria;
 	
 	@Column()
@@ -43,6 +46,14 @@ public class Produto {
 		this.nome = nome;
 	}
 	
+	public String getCodigoBarra() {
+		return codigoBarra;
+	}
+
+	public void setCodigoBarra(String codigoBarra) {
+		this.codigoBarra = codigoBarra;
+	}
+
 	public String getCategoria() {
 		return categoria;
 	}

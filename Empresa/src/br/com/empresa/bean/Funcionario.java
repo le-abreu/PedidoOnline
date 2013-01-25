@@ -3,45 +3,55 @@ package br.com.empresa.bean;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.persistence.Id;
+
 public class Funcionario {
-	
+
 	@Id
-	public Long id = new Long(0);
-	
-	public String nome;
-	
-	public String rg;
-	
-	public String cpf;
-	
-	public String carteiraTrabalho;
-	
-	public Date dataAniversario;
-	
-	public Integer genero;
-	
-	public Endereco endereco;
-	
-	public Integer status;
-	
-	public Date dataContratacao;
-	
-	public String nomeDoPai;
-	
-	public String nomeDaMae;
-	
-	public String telefone;
-	
-	public String celular;
-	
-	public String Salario;
-	
-	public Date dataDemisao;
-	
-	public String horarioInicio;
-	
+	private Long id = new Long(0);
+
+	private String nome;
+
+	private String rg;
+
+	private String cpf;
+
+	private String carteiraTrabalho;
+
+	private Date dataAniversario;
+
+	private Integer genero;
+
+	private Endereco endereco;
+
+	private Integer status;
+
+	private Date dataContratacao;
+
+	private String nomeDoPai;
+
+	private String nomeDaMae;
+
+	private String telefone;
+
+	private String celular;
+
+	private String Salario;
+
+	private Date dataDemisao;
+
+	private String horarioInicio;
+
+	private String horarioFim;
+
+	private String cargo;
+
+	private String setor;
+
+	private Funcionario gestor;
+
+	private List<Funcionario> subordinado;
+
 	public Date getDataDemisao() {
 		return dataDemisao;
 	}
@@ -66,16 +76,6 @@ public class Funcionario {
 		this.horarioFim = horarioFim;
 	}
 
-	public String horarioFim;
-	
-	public String cargo;
-	
-	public String setor;
-	
-	public Funcionario gestor;
-	
-	public List<Funcionario> subordinado;
-	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -91,7 +91,6 @@ public class Funcionario {
 	public void setSalario(String salario) {
 		Salario = salario;
 	}
-
 
 	public String getCargo() {
 		return cargo;
@@ -173,7 +172,6 @@ public class Funcionario {
 		this.dataAniversario = dataAniversario;
 	}
 
-
 	public Integer getGenero() {
 		return genero;
 	}
@@ -197,7 +195,6 @@ public class Funcionario {
 	public void setEnderco(Endereco enderco) {
 		this.endereco = enderco;
 	}
-
 
 	public Date getDataContratacao() {
 		return dataContratacao;
@@ -238,11 +235,5 @@ public class Funcionario {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-
-
-	
-	
-	
-	
 
 }

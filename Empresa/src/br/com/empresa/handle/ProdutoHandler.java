@@ -21,12 +21,22 @@ import br.com.empresa.util.ControllerArquivo;
 
 public class ProdutoHandler {
 
+	public String pesquisaProduto;
 	private Produto produto = new Produto();
 	private Produto produtoEscolhido;
 	private List<Produto> produtos;
 	private ProdutoDAO produtoDAO = new ProdutoDAO();
-	private final static String path = "C:\\Users\\LeulSeixas\\Desktop\\Fiap\\Project\\CadastroProduto\\WebContent" ;	
+	private final static String path = "C:\\Users\\LeulSeixas\\Desktop\\Fiap\\Project\\PedidoOnline\\Empresa\\WebContent";
 	private StreamedContent imagem;
+
+
+	public String getPesquisaProduto() {
+		return pesquisaProduto;
+	}
+
+	public void setPesquisaProduto(String pesquisaProduto) {
+		this.pesquisaProduto = pesquisaProduto;
+	}
 
 	public StreamedContent getImagem() {
 		return imagem;
@@ -68,8 +78,8 @@ public class ProdutoHandler {
 					.getInputstream(), "image/jpeg", event.getFile()
 					.getFileName());
 
-			ControllerArquivo.guardarArquivo(imagem.getStream(),
-					path+"\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
+			ControllerArquivo.guardarArquivo(imagem.getStream(), path
+					+ "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,16 +89,19 @@ public class ProdutoHandler {
 
 		boolean isDeletar = true;
 		produtoDAO.update(produto);
-		int id = produto.getId() != 0 ?  produto.getId() : produtoDAO.lista().size() == 0 ? 1 : produtoDAO.lista().size();
+		int id = produto.getId() != 0 ? produto.getId() : produtoDAO.lista()
+				.size() == 0 ? 1 : produtoDAO.lista().size();
 
 		try {
-			File file = new File(path+"\\imagens\\temp\\produto\\fotoPerfil.jpg");
+			File file = new File(path
+					+ "\\imagens\\temp\\produto\\fotoPerfil.jpg");
 			if (!file.exists()) {
 				isDeletar = false;
-				file = new File(path+"\\imagens\\temp\\produto\\fotoPerfilPadrao.jpg");
+				file = new File(path
+						+ "\\imagens\\temp\\produto\\fotoPerfilPadrao.jpg");
 			}
-			ControllerArquivo.guardarArquivo(new FileInputStream(file),
-					path+"\\imagens\\produto\\", id + ".jpg");
+			ControllerArquivo.guardarArquivo(new FileInputStream(file), path
+					+ "\\imagens\\produto\\", id + ".jpg");
 			produto = new Produto();
 			if (isDeletar)
 				file.delete();
@@ -105,33 +118,40 @@ public class ProdutoHandler {
 	}
 
 	public void selecionaArtista(ActionEvent event) {
-		File file ;
-		file = new File(path+"\\imagens\\produto\\fotoPerfil.jpg");
+		File file;
+		file = new File(path + "\\imagens\\produto\\fotoPerfil.jpg");
 		file.delete();
-		
+
 		UIParameter val = (UIParameter) event.getComponent().findComponent(
 				"idArtista");
 		int id = Integer.parseInt(val.getValue().toString());
 		produto = produtoDAO.find(id);
 
-		file = new File(path+"\\imagens\\produto\\" + produto.getId() + ".jpg");
+		file = new File(path + "\\imagens\\produto\\" + produto.getId()
+				+ ".jpg");
 		try {
-			ControllerArquivo.guardarArquivo(new FileInputStream(file),
-					path+"\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
+			ControllerArquivo.guardarArquivo(new FileInputStream(file), path
+					+ "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void deleteArtista(ActionEvent event) {
-		File file ;
-		
-		UIParameter val = (UIParameter) event.getComponent().findComponent("idProdutoDel");
+		File file;
+
+		UIParameter val = (UIParameter) event.getComponent().findComponent(
+				"idProdutoDel");
 		int id = Integer.parseInt(val.getValue().toString());
 		produto = produtoDAO.find(id);
-		
-		file = new File(path+"\\imagens\\produto\\" + produto.getId() + ".jpg");
+
+		file = new File(path + "\\imagens\\produto\\" + produto.getId()
+				+ ".jpg");
 		file.delete();
 		produtoDAO.delete(produto);
+	}
+	
+	public void pesquisaListProduto() {
+
 	}
 }

@@ -23,7 +23,7 @@ public class DAO<T> {
 	public List<T> lista() {
 		String nome = this.persistentClass.getName();
 		String sql = "SELECT c FROM  "
-				+ nome.replace("br.com.desenrola.bean.", "") + " c";
+				+ nome.replace("br.com.empresa.bean.", "") + " c";
 		Query q = getEm().createQuery(sql);
 		List<T> lista = q.getResultList();
 		return lista;
@@ -81,7 +81,7 @@ public class DAO<T> {
 	public T buscaPorParametro(Map<String, Object> parameters) {
 		String nome = this.persistentClass.getName();
 		StringBuilder sql = new StringBuilder();
-		sql.append("from ").append( nome.replace("br.com.desenrola.bean.", "") + " c").append(" where ");
+		sql.append("from ").append( nome.replace("br.com.empresa.bean.", "") + " c").append(" where ");
 		for (String string: parameters.keySet()) {
 			sql.append(string+ "= :"+ string);
 		}
@@ -98,7 +98,7 @@ public class DAO<T> {
 	public List<T> buscaListaPorParametro(Map<String, Object> parameters) {
 		String nome = this.persistentClass.getName();
 		StringBuilder sql = new StringBuilder();
-		sql.append("from ").append( nome.replace("br.com.desenrola.bean.", "") + " c").append(" where ");
+		sql.append("from ").append( nome.replace("br.com.empresa.bean.", "") + " c").append(" where ");
 		for (String string: parameters.keySet()) {
 			sql.append(string+ "= :"+ string);
 		}
