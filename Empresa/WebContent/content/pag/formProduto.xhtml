@@ -20,21 +20,16 @@
 					<p:inputText id="txtSearch" size="40" title="Digite o nome do produto" value="#{produtoHandle.pesquisaProduto}" />
 					<p:commandButton id="btnPesquisar" value="Pesquisar" style="font-size: 0.8em;" icon="ui-icon-search" ajax="false" action="#{produtoHandle.pesquisaListProduto}" />
 				</h:panelGrid>
-			</h:form>
-			<h:form id="buttonsForm" prependId="false">
+
 				<p:toolbar style="margin-top: 8px">
 					<p:toolbarGroup>
-						<p:commandButton id="btnNovo" value="Novo Produto"
-							style="font-size: 0.8em;" icon="ui-icon-document"
-							immediate="true" ajax="false"
-							onclick="telaProduto.show();return false;" />
-						<p:spacer></p:spacer>
+						<p:commandButton id="btnNovo" value="Novo Produto" style="font-size: 0.8em;" icon="ui-icon-document"
+							immediate="true" ajax="false" onclick="telaProduto.show();return false;" />
 
+						<p:spacer></p:spacer>
 					</p:toolbarGroup>
 				</p:toolbar>
-			</h:form>
 
-			<h:form id="produtoResult" prependId="false">
 				<h:panelGroup id="dataTableResults">
 					<p:dataTable id="dataTableProdutoResults" var="produto"
 						value="#{produtoHandle.listaProduto}" emptyMessage="Nenhum produto encontrado" paginator="true" rows="10"
@@ -66,44 +61,33 @@
 							<h:outputText value="#{produto.categoria}" />
 						</p:column>		
 						
-						<p:column sortable="true" sortBy="#{produto.codigoBarra}">
-							<f:facet name="header">
-								<h:outputText value="Codigo Barra" />
-							</f:facet>
-							<h:outputText value="#{produto.codigoBarra}" />
-						</p:column> 
-						
-						<p:column style="width:90px">
-							<p:commandButton id="btnVer" title="Ver"
-								icon="ui-icon ui-icon-search">
-								<f:setPropertyActionListener value="#{produto}"
-									target="#{produtoHandle.produtoEscolhido}" />
+						<p:column>
+							<p:commandButton id="btnVer" title="Ver" icon="ui-icon ui-icon-search" oncomplete="telaViewProduto.show()" update=":formViewProduto:dialogViewProduto">
+								<f:setPropertyActionListener value="#{produto}" target="#{produtoHandle.produto}" />
 							</p:commandButton>
 						</p:column>
 						
-						<p:column style="width:90px">
-							<p:commandButton id="btnEditar" title="Editar"
-								icon="ui-icon-pencil" action="#{produtoHandle.editar}" immediate="true" ajax="false">
-								<f:setPropertyActionListener value="{produto}"
-									target="#{produtoHandle.produtoEscolhido}" />
+						<p:column>
+							<p:commandButton id="btnEditar" title="Editar" icon="ui-icon-pencil" actionListener="#{produtoHandle.selecionaProduto}" oncomplete="telaProduto.show()" update=":formCadastroProduto:dialogProduto">
+								<f:setPropertyActionListener value="#{produto}" target="#{produtoHandle.produto}" />
+								<f:param value="#{produto.id}" name="idProduto" id="idProduto" />
 							</p:commandButton>
 						</p:column>
 						
-						<p:column style="width:90px">
-							<p:commandButton id="btnRemover" title="Remover" icon="ui-icon-trash">
-								<f:setPropertyActionListener
-									target="#{produtoHandle.produtoEscolhido}"
-									value="#{produto}" />
+						<p:column>
+							<p:commandButton id="btnRemover" title="Remover" icon="ui-icon-trash" oncomplete="telaProduto.show()" update=":formCadastroProduto:dialogProduto">
+								<f:setPropertyActionListener target="#{produtoHandle.produto}" value="#{produto}" />
 							</p:commandButton>
 						</p:column>
 					</p:dataTable>
 				</h:panelGroup>
 			</h:form>
 		</p:panel>
-		<p:dialog id="dialogNovoBt" header="Cadastrar Novo" widgetVar="telaProduto" resizable="true" showEffect="fold" hideEffect="fold" >
-			<h:form id="buttonsForm_3" prependId="false">
+		
+		<h:form id="formCadastroProduto" prependId="false">
+			<p:dialog id="dialogProduto" header="Produto" widgetVar="telaProduto" resizable="true" showEffect="fold" hideEffect="fold" >
 				<h:inputHidden id="id"  value="#{produtoHandle.produto.id}" />
-				<h:panelGrid id="display_34" columns="2" cellpadding="4">
+				<h:panelGrid id="gridProduto" columns="2" cellpadding="4">
 					<h:outputLabel value="Nome:" for="nomeProdutoNovo"/>
 					<p:inputText id="nomeProdutoNovo"  value="#{produtoHandle.produto.nome}" />
 					
@@ -120,6 +104,7 @@
 				</h:panelGrid>  
 				<h:panelGrid columns="1" cellpadding="1" style="margin-left:14%; margin-top:-30px">
 					<p:inputTextarea rows="10" cols="70" value="#{produtoHandle.produto.descricao}" id="descricaoProdutoNovo" />  
+					
 					<p:fileUpload fileUploadListener="#{produtoHandle.uploadFoto}"
 						mode="advanced" update="messagesSalvar" auto="false" multiple="false"
 						sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Foto" showButtons="false" cancelLabel="Cancelar" uploadLabel="Salvar Foto"/>
@@ -127,9 +112,35 @@
 				</h:panelGrid>  
 				
 				<p:growl id="messagesSalvar" showDetail="false"/> 
-			</h:form>
+			</p:dialog>
+		</h:form>
 
-		</p:dialog>
+		<h:form id="formViewProduto" prependId="false">
+			<p:dialog id="dialogViewProduto" header="Produto" widgetVar="telaViewProduto" resizable="true" showEffect="fold" hideEffect="fold" >
+				<h:inputHidden id="idView"  value="#{produtoHandle.produto.id}" />
+				<h:panelGrid id="gridViewProduto" columns="2" cellpadding="4">
+					<h:panelGrid id="gridResultViewProduto" columns="2" cellpadding="4">
+						<h:outputLabel value="Nome:" for="nomeProdutoView"/>
+						<h:outputLabel id="nomeProdutoView"  value="#{produtoHandle.produto.nome}" />
+						
+						<h:outputLabel value="Categoria:" for="categoriaProdutoView"/>
+						<h:outputLabel id="categoriaProdutoView"  value="#{produtoHandle.produto.categoria}" />
+						
+						<h:outputLabel value="Codigo Barra:" for="codigoBarraProdutoView"/>
+						<h:outputLabel id="codigoBarraProdutoView"  value="#{produtoHandle.produto.codigoBarra}" />
+						
+						<h:outputLabel value="Preço:" for="precoProdutoView"/>
+						<h:outputLabel id="precoProdutoView" value="R$ #{produtoHandle.produto.preco}" mask="99.99" />
+						
+						<h:outputLabel value="Descrição:" for="descricaoProdutoView"/>
+					</h:panelGrid>  
+					<img src="#{produtoHandle.produto.foto}" width="160" height="140" style="margin-left:10px"/>
+				</h:panelGrid>  
+				<h:panelGrid columns="1" cellpadding="1" style="margin-top:0px">
+					<p:inputTextarea rows="10" cols="70" value="#{produtoHandle.produto.descricao}" id="descricaoProdutoView" disabled="true" />  
+				</h:panelGrid>  
+			</p:dialog>
+		</h:form>
 
 	</ui:define>
 </ui:composition>

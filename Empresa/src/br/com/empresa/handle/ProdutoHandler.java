@@ -74,12 +74,8 @@ public class ProdutoHandler {
 		FacesMessage msg = new FacesMessage("Sucesso!!");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		try {
-			imagem = new DefaultStreamedContent(event.getFile()
-					.getInputstream(), "image/jpeg", event.getFile()
-					.getFileName());
-
-			ControllerArquivo.guardarArquivo(imagem.getStream(), path
-					+ "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
+			imagem = new DefaultStreamedContent(event.getFile().getInputstream(), "image/jpeg", event.getFile().getFileName());
+			ControllerArquivo.guardarArquivo(imagem.getStream(), path+ "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -93,8 +89,7 @@ public class ProdutoHandler {
 				.size() == 0 ? 1 : produtoDAO.lista().size();
 
 		try {
-			File file = new File(path
-					+ "\\imagens\\temp\\produto\\fotoPerfil.jpg");
+			File file = new File(path + "\\imagens\\temp\\produto\\fotoPerfil.jpg");
 			if (!file.exists()) {
 				isDeletar = false;
 				file = new File(path
@@ -117,27 +112,24 @@ public class ProdutoHandler {
 		return produtos;
 	}
 
-	public void selecionaArtista(ActionEvent event) {
+	public void selecionaProduto(ActionEvent event) {
 		File file;
 		file = new File(path + "\\imagens\\produto\\fotoPerfil.jpg");
 		file.delete();
 
-		UIParameter val = (UIParameter) event.getComponent().findComponent(
-				"idArtista");
+		UIParameter val = (UIParameter) event.getComponent().findComponent("idProduto");
 		int id = Integer.parseInt(val.getValue().toString());
 		produto = produtoDAO.find(id);
 
-		file = new File(path + "\\imagens\\produto\\" + produto.getId()
-				+ ".jpg");
+		file = new File(path + "\\imagens\\produto\\" + produto.getId()	+ ".jpg");
 		try {
-			ControllerArquivo.guardarArquivo(new FileInputStream(file), path
-					+ "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
+			ControllerArquivo.guardarArquivo(new FileInputStream(file), path + "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void deleteArtista(ActionEvent event) {
+	public void deleteProduto(ActionEvent event) {
 		File file;
 
 		UIParameter val = (UIParameter) event.getComponent().findComponent(
