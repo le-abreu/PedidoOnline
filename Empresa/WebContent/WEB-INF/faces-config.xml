@@ -9,6 +9,11 @@
 		<managed-bean-class>br.com.empresa.handle.ProdutoHandler</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>photoCam</managed-bean-name>
+		<managed-bean-class>br.com.empresa.handle.PhotoCamBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 	
 	<converter>  
 	   <converter-id>br.com.produto.bean.Produto</converter-id>  

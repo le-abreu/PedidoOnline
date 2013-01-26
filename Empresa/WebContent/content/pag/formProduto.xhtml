@@ -11,14 +11,14 @@
 
 	<ui:define name="title">Produto</ui:define>
 	<ui:define name="content">
-		<p:panel id="panelProduto1" header="Produto" style="margin-bottom:90px; font-size: 12px;">
+		<h:form id="formProduto" prependId="false">
 
-			<h:form id="formProduto" prependId="false">
+			<p:panel id="panelProduto1" header="Produto" style="margin-bottom:90px; font-size: 12px;">
 				<p:messages id="messages" />
 				<h:panelGrid id="panelSearch" columns="2">
 					<h:outputLabel id="lblPesquisaNomeProduto" value="Nome do produto" />
 					<p:inputText id="txtSearch" size="40" title="Digite o nome do produto" value="#{produtoHandle.pesquisaProduto}" />
-					<p:commandButton id="btnPesquisar" value="Pesquisar" style="font-size: 0.8em;" icon="ui-icon-search" ajax="false" action="#{produtoHandle.pesquisaListProduto}" />
+					<p:commandButton id="btnPesquisar" value="Pesquisar" style="font-size: 0.8em;" icon="ui-icon-search" actionListener="#{produtoHandle.pesquisaListProduto}" update=":formProduto:dataTableResults"/>
 				</h:panelGrid>
 
 				<p:toolbar style="margin-top: 8px">
@@ -32,21 +32,18 @@
 
 				<h:panelGroup id="dataTableResults">
 					<p:dataTable id="dataTableProdutoResults" var="produto"
-						value="#{produtoHandle.listaProduto}" emptyMessage="Nenhum produto encontrado" paginator="true" rows="10"
+						value="#{produtoHandle.produtos}" emptyMessage="Nenhum produto encontrado" paginator="true" rows="3"
 						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="10,20,50" selection="#{produtoHandle.produtoEscolhido}" style="margin-top: 8px">
+						rowsPerPageTemplate="3,10,20" selection="#{produtoHandle.produtoEscolhido}" style="margin-top: 8px">
 
 						<f:facet name="header">
 							<h:outputText value="" />
 						</f:facet>
 						
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="#" />
-							</f:facet>
-							<img src="#{produto.foto}" width="120" height="80"/>	
-						</p:column>
-						
+						<p:column style="width:2%">  
+			            	<p:rowToggler />  
+				        </p:column>  
+				  
 						<p:column sortable="true" sortBy="#{produto.nome}">
 							<f:facet name="header">
 								<h:outputText value="Nome" />
@@ -65,24 +62,54 @@
 							<p:commandButton id="btnVer" title="Ver" icon="ui-icon ui-icon-search" oncomplete="telaViewProduto.show()" update=":formViewProduto:dialogViewProduto">
 								<f:setPropertyActionListener value="#{produto}" target="#{produtoHandle.produto}" />
 							</p:commandButton>
-						</p:column>
-						
-						<p:column>
 							<p:commandButton id="btnEditar" title="Editar" icon="ui-icon-pencil" actionListener="#{produtoHandle.selecionaProduto}" oncomplete="telaProduto.show()" update=":formCadastroProduto:dialogProduto">
 								<f:setPropertyActionListener value="#{produto}" target="#{produtoHandle.produto}" />
 								<f:param value="#{produto.id}" name="idProduto" id="idProduto" />
 							</p:commandButton>
-						</p:column>
-						
-						<p:column>
-							<p:commandButton id="btnRemover" title="Remover" icon="ui-icon-trash" oncomplete="telaProduto.show()" update=":formCadastroProduto:dialogProduto">
+							<p:commandButton id="btnRemover" title="Remover" icon="ui-icon-trash" oncomplete="telaEstoqueProduto.show()" update=":formEstoqueProduto:dialogEstoqueProduto">
 								<f:setPropertyActionListener target="#{produtoHandle.produto}" value="#{produto}" />
 							</p:commandButton>
 						</p:column>
+						
+						<p:rowExpansion>  
+							<h:panelGrid  columns="2" cellpadding="4">
+			                    <p:graphicImage value="#{produto.foto}" width="90" height="120"/>  
+								<p:dataTable id="dataTableProdutoResults" var="estoque"
+									value="#{produto.listaEstoque}" emptyMessage="Nenhum item em estoque encontrado" paginator="true" rows="3"
+									paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									rowsPerPageTemplate="3,10,20" style="width:600px;" styleClass=" ui-widget-content grid">
+			
+									<f:facet name="header">
+										<h:outputText value="Itens do Produto em Estoque" />
+									</f:facet>
+									
+									<p:column sortable="true" sortBy="#{estoque.fornecedor.nomeFantasia}">
+										<f:facet name="header">
+											<h:outputText value="Fornecedor" />
+										</f:facet>
+										<h:outputText value="#{estoque.fornecedor.nomeFantasia}" />
+									</p:column>
+											
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Qtd" />
+										</f:facet>
+										<h:outputText value="#{estoque.quantidade}" />
+									</p:column>
+	
+									<p:column>
+										<f:facet name="header">
+											<h:outputText value="Lançamento" />
+										</f:facet>
+										<h:outputText value="#{estoque.tipoLancamento}" />
+									</p:column>
+						       	</p:dataTable>
+							</h:panelGrid>
+				        </p:rowExpansion>
 					</p:dataTable>
 				</h:panelGroup>
-			</h:form>
-		</p:panel>
+			</p:panel>
+		</h:form>
 		
 		<h:form id="formCadastroProduto" prependId="false">
 			<p:dialog id="dialogProduto" header="Produto" widgetVar="telaProduto" resizable="true" showEffect="fold" hideEffect="fold" >
@@ -114,6 +141,34 @@
 				<p:growl id="messagesSalvar" showDetail="false"/> 
 			</p:dialog>
 		</h:form>
+		
+		<h:form id="formEstoqueProduto" prependId="false">
+			<p:dialog id="dialogEstoqueProduto" header="Produto" widgetVar="telaEstoqueProduto" resizable="true" showEffect="fold" hideEffect="fold" >
+				<h:inputHidden id="idProdutoEstoque"  value="#{produtoHandle.produto.id}" />
+				<h:panelGrid id="gridEstoqueProdutoImg" columns="2" cellpadding="4">
+					<h:panelGrid id="gridEstoqueProduto" columns="2" cellpadding="4">
+						<h:outputLabel value="Nome:" for="nomeProdutoEstoque"/>
+						<h:outputLabel id="nomeProdutoEstoque"  value="#{produtoHandle.produto.nome}" />
+						
+						<h:outputLabel value="Preço:" for="precoProdutoEstoque"/>
+						<h:outputLabel id="precoProdutoEstoque" value="#{produtoHandle.produto.preco}" mask="99.99" />
+						
+						<h:outputLabel value="Qtd:" for="qtdEstoque"/>
+						<p:inputText id="qtdEstoque" value="#{produtoHandle.estoque.quantidade}"/>
+
+						<h:outputLabel value="Validade:" for="dataValidadeEstoque"/>
+						<p:calendar id="dataValidadeEstoque" value="#{produtoHandle.estoque.dataValidade}" pattern="dd/MM/yyyy" showButtonPanel="true"/>  
+						
+						<h:outputLabel value="Tipo Lançamento:" for="tipoLancamento" />
+						<p:selectOneRadio id="tipoLancamento" value="#{produtoHandle.estoque.tipoLancamento}">  
+							<f:selectItems value="#{produtoHandle.tipoLancamentoEnum}" itemLabel="#{tipo.description}" itemValue="#{tipo}" var="tipo" />
+				        </p:selectOneRadio> 
+					</h:panelGrid>  
+					<img src="#{produtoHandle.produto.foto}" width="160" height="140" style="margin-left:10px"/>
+					<h:commandButton action="#{produtoHandle.salvarEstoque}" value="+Finalizar" id="btSalvarEstoque" />
+				</h:panelGrid>  
+			</p:dialog>
+		</h:form>
 
 		<h:form id="formViewProduto" prependId="false">
 			<p:dialog id="dialogViewProduto" header="Produto" widgetVar="telaViewProduto" resizable="true" showEffect="fold" hideEffect="fold" >
@@ -141,6 +196,5 @@
 				</h:panelGrid>  
 			</p:dialog>
 		</h:form>
-
 	</ui:define>
 </ui:composition>

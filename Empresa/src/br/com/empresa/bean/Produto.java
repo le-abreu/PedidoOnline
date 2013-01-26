@@ -1,10 +1,14 @@
 package br.com.empresa.bean;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -30,6 +34,9 @@ public class Produto {
 	@Column(length= 1000)
 	private String descricao;
 
+	@OneToMany(mappedBy = "produto", cascade= CascadeType.ALL)
+	private List<Estoque> listaEstoque;
+	
 	public int getId() {
 		return id;
 	}
@@ -76,6 +83,14 @@ public class Produto {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public List<Estoque> getListaEstoque() {
+		return listaEstoque;
+	}
+
+	public void setListaEstoque(List<Estoque> listaEstoque) {
+		this.listaEstoque = listaEstoque;
 	}
 
 	public String getFoto() {

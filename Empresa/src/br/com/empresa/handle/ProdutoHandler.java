@@ -10,12 +10,16 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import br.com.empresa.bean.Estoque;
 import br.com.empresa.bean.Produto;
+import br.com.empresa.bean.TipoLancamentoEnum;
+import br.com.empresa.dao.EstoqueDAO;
 import br.com.empresa.dao.ProdutoDAO;
 import br.com.empresa.util.ControllerArquivo;
 
@@ -23,12 +27,25 @@ public class ProdutoHandler {
 
 	public String pesquisaProduto;
 	private Produto produto = new Produto();
+	private Estoque estoque = new Estoque();
 	private Produto produtoEscolhido;
 	private List<Produto> produtos;
+	private EstoqueDAO estoqueDAO = new EstoqueDAO();
 	private ProdutoDAO produtoDAO = new ProdutoDAO();
 	private final static String path = "C:\\Users\\LeulSeixas\\Desktop\\Fiap\\Project\\PedidoOnline\\Empresa\\WebContent";
 	private StreamedContent imagem;
 
+	{
+		produtos = produtoDAO.lista();
+	}
+	
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
+	}
 
 	public String getPesquisaProduto() {
 		return pesquisaProduto;
@@ -106,6 +123,14 @@ public class ProdutoHandler {
 
 		return "Salvar";
 	}
+	
+	public String salvarEstoque() {
+		estoque.setProduto(produto);
+		estoqueDAO.persist(estoque);
+		estoque =  new Estoque();
+		produto =  new Produto();
+		return "Salvar";
+	}
 
 	public List<Produto> getListaProduto() {
 		produtos = produtoDAO.lista();
@@ -132,18 +157,26 @@ public class ProdutoHandler {
 	public void deleteProduto(ActionEvent event) {
 		File file;
 
-		UIParameter val = (UIParameter) event.getComponent().findComponent(
-				"idProdutoDel");
+		UIParameter val = (UIParameter) event.getComponent().findComponent("idProdutoDel");
 		int id = Integer.parseInt(val.getValue().toString());
 		produto = produtoDAO.find(id);
 
-		file = new File(path + "\\imagens\\produto\\" + produto.getId()
-				+ ".jpg");
+		file = new File(path + "\\imagens\\produto\\" + produto.getId() + ".jpg");
 		file.delete();
 		produtoDAO.delete(produto);
 	}
 	
-	public void pesquisaListProduto() {
-
+	public String pesquisaListProduto(ActionEvent event) {
+		produtos = produtoDAO.buscaListaPorParametro(pesquisaProduto);
+		return "Salvar";
+	}
+	
+	public SelectItem[] getTipoLancamentoEnum() {
+		SelectItem[] items = new SelectItem[TipoLancamentoEnum.values().length];
+		int i = 0;
+		for (TipoLancamentoEnum t : TipoLancamentoEnum.values()) {
+			items[i++] = new SelectItem(t, ""+t);
+		}
+		return items;
 	}
 }
