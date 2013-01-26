@@ -30,49 +30,60 @@ public class DAO<T> {
 	}
 
 	@SuppressWarnings("unchecked")
+	public T find(long id) {
+		return (T) getEm().find(persistentClass, id);
+	}
+
+	@SuppressWarnings("unchecked")
 	public T find(int id) {
 		return (T) getEm().find(persistentClass, id);
 	}
 
-	public void persist(T t) {
+	public void persist(T t) throws Exception {
 		EntityTransaction trans = getEm().getTransaction();
 		try {
 			trans.begin();
 			getEm().merge(t);
 			trans.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 			if (trans.isActive())
 				trans.rollback();
+		
+			throw new Exception();
+		
 		}
 	}
 
-	public void update(T t) {
+	public void update(T t) throws Exception {
 		EntityTransaction trans = getEm().getTransaction();
 		try {
 			trans.begin();
 			getEm().merge(t);
 			trans.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
 			if (trans.isActive())
 				trans.rollback();
+			
+			throw new Exception();
+		
 		}
 
 	}
 
-	public void delete(T t) {
+	public void delete(T t) throws Exception {
 		try {
 			EntityTransaction trans = getEm().getTransaction();
 			trans.begin();
 			getEm().remove(t);
 			trans.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+		
+			throw new Exception();
 		}
 
 	}
 
+	
 	public EntityManager getEm() {
 		return em;
 	}

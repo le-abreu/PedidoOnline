@@ -14,7 +14,7 @@
 		<p:panel id="panelRecurso_1" header="Recursos Humanos 1"
 			style="margin-bottom:90px; font-size: 12px;">
 
-			<h:form id="formRecursoHumanos_1" prependId="false">
+			<h:form id="Gerenciametno" prependId="false">
 				<p:messages id="messages" />
 				<h:panelGrid id="panelSearch" columns="2">
 					<h:outputLabel id="lbl_pesquisa_1" value="Nome do funcinario" />
@@ -40,7 +40,7 @@
 						<p:commandButton id="btnNovo" value="Novo"
 							style="font-size: 0.8em;" icon="ui-icon-document"
 							immediate="true" ajax="false"
-							onclick="novoFuncionario_tela.show();return false;" />
+							onclick="novoFuncionario_tela.show();return false;" action="#{rh_list.btnNovo()}"/>
 
 						<p:spacer></p:spacer>
 
@@ -107,22 +107,28 @@
 
 						<p:column style="width:90px">
 							<p:commandButton id="btnVer" title="Ver"
-								icon="ui-icon ui-icon-search">
+								icon="ui-icon ui-icon-search" update=":buttonsForm_3:dialogNovoBt"
+								oncomplete="novoFuncionario_tela.show()" actionListener="#{rh_list.btnVer}">
 								<f:setPropertyActionListener value="#{funcionario}"
-									target="#{funcionarioBean.funcionarioSelecionado}" />
+									target="#{rh_list.novoFuncionario}" />
+								<f:param name="idFuncionarioVer" id="idFuncionarioVer" value="#{funcionario.id}"/>
 							</p:commandButton>
+
+
 							<p:commandButton id="btnEditar" title="Editar"
-								icon="ui-icon-pencil" action="#{rh_list.editar}"
-								immediate="true" ajax="false">
-								<f:setPropertyActionListener value="{funcionario}"
-									target="#{funcionarioBean.funcionarioSelecionado}" />
+								icon="ui-icon-pencil" actionListener="#{rh_list.editar}"
+								 update=":buttonsForm_3:dialogNovoBt"
+								oncomplete="novoFuncionario_tela.show()">
+								<f:setPropertyActionListener value="#{funcionario}"
+									target="#{rh_list.novoFuncionario}" />
+										<f:param name="idFuncionarioEdit" id="idFuncionarioEdit" value="#{funcionario.id}"/>
 							</p:commandButton>
 
 
 							<p:commandButton id="btnRemover" title="Remover"
 								icon="ui-icon-trash">
 								<f:setPropertyActionListener
-									target="#{funcionarioBean.funcionarioSelecionado}"
+									target="#{rh_list.funcionarioSelecionado}"
 									value="#{funcionario}" />
 							</p:commandButton>
 						</p:column>
@@ -131,166 +137,199 @@
 			</h:form>
 
 		</p:panel>
-		<p:dialog id="dialogNovoBt" header="Cadastrar Novo"
-			widgetVar="novoFuncionario_tela" resizable="true" showEffect="fold" hideEffect="fold" >
-			<h:form id="buttonsForm_3" prependId="false">
-				<h:panelGrid id="display_34" columns="2" cellpadding="4">
-
-					<h:outputText id="lb2" value="Nome: " style="font-weight: bold" />
-					<p:inputText id="txt2" value="#{rh_list.novoFuncionario.nome}"
-						size="40" readonly="rh_list.inserirFuncionario" />
-
-					<h:outputText id="lbl3" value="Rg: " style="font-weight: bold" />
-					<p:inputText id="txt3" value="#{rh_list.novoFuncionario.rg}"
-						size="40" readonly="rh_list.inserirFuncionario" />
-
-					<h:outputText id="lbl4" value="Cpf: " style="font-weight: bold" />
-					<p:inputText id="txt4" value="#{rh_list.novoFuncionario.cpf}"
-						size="40" readonly="rh_list.inserirFuncionario" />
-
-					<h:outputText id="lbl5" value="Numero carteira de Trabalho: "
-						style="font-weight: bold" />
-					<p:inputText id="txt5"
-						value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
-						readonly="rh_list.inserirFuncionario" />
-
-					<h:outputText id="lbl5_" value="Numero carteira de Trabalho: "
-						style="font-weight: bold" />
-					<p:inputText id="txt5_"
-						value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
-						readonly="rh_list.inserirFuncionario" />
-					
-		<h:outputText id="lbl32" value="De Aniversario" style="font-weight: bold" />
-
-					<p:calendar id="data" size="10" title="Data de Anivesario"
-						value="#{rh_list.novoFuncionario.carteiraTrabalho}"
-						required="true" requiredMessage="Data obrigatório!"
-						showOtherMonths="true" lang="pt" pattern="dd/MM/yyyy" />
 
 
-					
-					<h:outputText id="lbl6" value="Numero carteira de Trabalho: "
-						style="font-weight: bold" />
-					<p:inputText id="txt6"
-						value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
-						readonly="rh_list.inserirFuncionario" />
+
+		<h:form id="buttonsForm_3" prependId="false">
+			<p:dialog id="dialogNovoBt" header="Cadastrar Novo"
+				widgetVar="novoFuncionario_tela" resizable="true" showEffect="fold"
+				hideEffect="fold">
+
+				<h:outputText id="lb345d" value="Tira Foto:"
+					style="font-weight: bold" rendered="#{rh_list.inserirFuncionario == false}" />
 
 
-					<h:outputText id="lbl7" value="Sexo:" style="font-weight: bold" />
-					<h:panelGrid id="panel_novo_1" columns="2">
+
+					<h:panelGrid columns="3">
+						<p:photoCam widgetVar="pc" listener="#{rh_list.oncapture}"
+							update="photos" rendered="#{rh_list.inserirFuncionario == false}" />
+
+						<p:commandButton type="button" value="Capture"
+							onclick="pc.capture()" rendered="#{rh_list.inserirFuncionario == false}"/>
+
+						<p:imageSwitch effect="zoom" id="photos">
+							<ui:repeat value="#{rh_list.photos}" var="photo">
+								<p:graphicImage value="../images/img001.png" />
+							</ui:repeat>
+						</p:imageSwitch>
+				</h:panelGrid>
+				
+
+				<p:scrollPanel style="width:700px;height:200px">
+
+
+
+					<h:panelGrid columns="2">
+
+						<h:outputText id="lb2" value="Nome:" style="font-weight: bold" />
+						<p:inputText id="txt2" value="#{rh_list.novoFuncionario.nome}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl3" value="Rg: " style="font-weight: bold" />
+						<p:inputText id="txt3" value="#{rh_list.novoFuncionario.rg}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl4" value="Cpf: " style="font-weight: bold" />
+						<p:inputText id="txt4" value="#{rh_list.novoFuncionario.cpf}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl5" value="Numero carteira de Trabalho: "
+							style="font-weight: bold" />
+						<p:inputText id="txt5"
+							value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl5_" value="Numero carteira de Trabalho: "
+							style="font-weight: bold" />
+						<p:inputText id="txt5_"
+							value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl32" value="De Aniversario"
+							style="font-weight: bold" />
+
+						<p:calendar id="data" size="10" title="Data de Anivesario"
+							value="#{rh_list.novoFuncionario.dataAniversario}"
+							 pattern="dd/MM/yyyy" 
+							showOtherMonths="true" />
+
+
+
+						<h:outputText id="lbl6" value="Numero carteira de Trabalho: "
+							style="font-weight: bold" />
+						<p:inputText id="txt6"
+							value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl7" value="Sexo:" style="font-weight: bold" />
+
 						<p:selectOneRadio id="radioStatus_"
 							value="#{rh_list.novoFuncionario.status}">
 							<f:selectItem itemLabel="Masculino" itemValue="1" />
 							<f:selectItem itemLabel="Feminino" itemValue="2" />
 						</p:selectOneRadio>
-					</h:panelGrid>
-
-					<h:outputText id="lbl8" value="Rua:" style="font-weight: bold" />
-					<p:inputText id="txt8"
-						value="#{rh_list.novoFuncionario.endereco.rua}" size="40"
-						readonly="rh_list.inserirFuncionario" />
-
-					<h:outputText id="lbl9" value="Lougradouro: "
-						style="font-weight: bold" />
-					<p:inputText id="txt9"
-						value="#{rh_list.novoFuncionario.endereco.lougradouro}" size="40"
-						readonly="rh_list.inserirFuncionario" />
 
 
-					<h:outputText id="lbl10" value="Numero " style="font-weight: bold" />
-					<p:inputText id="txt10"
-						value="#{rh_list.novoFuncionario.endereco.numero}" size="40"
-						readonly="rh_list.inserirFuncionario" />
-				
-				
-				<h:outputText id="lbl11" value="Complemento" style="font-weight: bold" />
-					<p:inputText id="txt11"
-						value="#{rh_list.novoFuncionario.endereco.complmento}" size="40"
-						readonly="rh_list.inserirFuncionario" />
+						<h:outputText id="lbl8" value="Rua:" style="font-weight: bold" />
+						<p:inputText id="txt8" value="#{rh_list.endereco.rua}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
 
-					<h:outputText id="lbl12" value="Status" style="font-weight: bold" />
-					<h:panelGrid id="panelRadio-" columns="2">
-						<p:selectOneRadio id="radioStatus"
-							value="#{rh_list.novoFuncionario.status}">
-							<f:selectItem itemLabel="Ativo" itemValue="1" />
-							<f:selectItem itemLabel="Inativo" itemValue="-1" />
-						</p:selectOneRadio>
+						<h:outputText id="lbl9" value="Lougradouro: "
+							style="font-weight: bold" />
+						<p:inputText id="txt9" value="#{rh_list.endereco.lougradouro}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl10" value="Numero " style="font-weight: bold" />
+						<p:inputText id="txt10" value="#{rh_list.endereco.numero}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl11" value="Complemento"
+							style="font-weight: bold" />
+						<p:inputText id="txt11" value="#{rh_list.endereco.complemento}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl12" value="Status" style="font-weight: bold" />
+						<h:panelGrid id="panelRadio-" columns="2">
+							<p:selectOneRadio id="radioStatus"
+								value="#{rh_list.novoFuncionario.status}">
+								<f:selectItem itemLabel="Ativo" itemValue="1" />
+								<f:selectItem itemLabel="Inativo" itemValue="-1" />
+							</p:selectOneRadio>
 						</h:panelGrid>
-				<h:outputText id="lbl13" value="Nome do Pai" style="font-weight: bold" />
-					<p:inputText id="txt13"
-						value="#{rh_list.novoFuncionario.nomeDoPai}" size="40"
-						readonly="rh_list.inserirFuncionario" />
 
-					<h:outputText id="lbl14" value="Nome do Mãe" style="font-weight: bold" />
-					<p:inputText id="txt14"
-						value="#{rh_list.novoFuncionario.nomeDaMae}" size="40"
-						readonly="rh_list.inserirFuncionario" />
-						
-						
-						<h:outputText id="lbl16" value="Telefone" style="font-weight: bold" />
-					<p:inputText id="txt16"
-						value="#{rh_list.novoFuncionario.telefone}" size="40"
-						readonly="rh_list.inserirFuncionario" />
+						<h:outputText id="lbl13" value="Nome do Pai"
+							style="font-weight: bold" />
+						<p:inputText id="txt13"
+							value="#{rh_list.novoFuncionario.nomeDoPai}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl14" value="Nome do Mãe"
+							style="font-weight: bold" />
+						<p:inputText id="txt14"
+							value="#{rh_list.novoFuncionario.nomeDaMae}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl16" value="Telefone"
+							style="font-weight: bold" />
+						<p:inputText id="txt16"
+							value="#{rh_list.novoFuncionario.telefone}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
 
 						<h:outputText id="lbl17" value="Celular" style="font-weight: bold" />
 						<p:inputText id="txt17" value="#{rh_list.novoFuncionario.celular}"
-							size="40" readonly="rh_list.inserirFuncionario" />
-							
-							<h:outputText id="lbl18" value="Salario" style="font-weight: bold" />
-						<p:inputText id="txt18" value="#{rh_list.novoFuncionario.salario}"
-							size="40" readonly="rh_list.inserirFuncionario" />
-							
-	
-							<h:outputText id="lbl400" value="Horario de Entrada" style="font-weight: bold" />
-						<p:inputText id="txt20" value="#{rh_list.novoFuncionario.horarioInicio}"
-							size="40" readonly="rh_list.inserirFuncionario" />
-				
-				
-				<h:outputText id="lbl30" value="Data Contratação" style="font-weight: bold" />
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
 
-							<p:calendar id="data_contratacao" size="10"
-								title="Data de Contratação"
-								value="#{rh_list.novoFuncionario.dataContratacao}"
-								required="true" requiredMessage="Data obrigatório!"
-								showOtherMonths="true" lang="pt" pattern="dd/MM/yyyy" />
-				<h:outputText id="lbl31" value="Data Demisão / Fim de contrato" style="font-weight: bold" />
-								<p:calendar id="data_demisao" size="10"
-								title="Data de Demisao / fim de contrato"
-								value="#{rh_list.novoFuncionario.dataDemisao}"
-								required="true" requiredMessage="Data obrigatório!"
-								showOtherMonths="true" lang="pt" pattern="dd/MM/yyyy" />
-						
-						
-							<h:outputText id="lbl20" value="Horario de Entrada" style="font-weight: bold" />
-						<p:inputText id="txt20_" value="#{rh_list.novoFuncionario.horarioInicio}"
-							size="40" readonly="rh_list.inserirFuncionario" />
+						<h:outputText id="lbl18" value="Salario" style="font-weight: bold" />
+						<p:inputText id="txt18" value="#{rh_list.novoFuncionario.salario}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl400" value="Horario de Entrada"
+							style="font-weight: bold" />
+						<p:inputText id="txt20"
+							value="#{rh_list.novoFuncionario.horarioInicio}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl30" value="Data Contratação"
+							style="font-weight: bold" />
+
+						<p:calendar id="data_contratacao" size="10"
+							title="Data de Contratação"
+							value="#{rh_list.novoFuncionario.dataContratacao}"
+							showOtherMonths="true"  pattern="dd/MM/yyyy" />
+						<h:outputText id="lbl31" value="Data Demisão / Fim de contrato"
+							style="font-weight: bold" />
+						<p:calendar id="data_demisao" size="10"
+							title="Data de Demisao / fim de contrato"
+							value="#{rh_list.novoFuncionario.dataDemisao}" pattern="dd/MM/yyyy"  showOtherMonths="true"/>
+
+
+						<h:outputText id="lbl20" value="Horario de Entrada"
+							style="font-weight: bold" />
+						<p:inputText id="txt20_"
+							value="#{rh_list.novoFuncionario.horarioInicio}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
 
 
 						<h:outputText id="lbl21" value="Horario de Saida"
 							style="font-weight: bold" />
 						<p:inputText id="txt21"
 							value="#{rh_list.novoFuncionario.horarioFim}" size="40"
-							readonly="rh_list.inserirFuncionario" />
+							readonly="#{rh_list.inserirFuncionario}" />
 
 						<h:outputText id="lbl22" value="Cargo" style="font-weight: bold" />
 						<p:inputText id="txt22" value="#{rh_list.novoFuncionario.cargo}"
-							size="40" readonly="rh_list.inserirFuncionario" />
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
 
-					<h:outputText id="lbl23" value="Setor" style="font-weight: bold" />
+						<h:outputText id="lbl23" value="Setor" style="font-weight: bold" />
 						<p:inputText id="txt23" value="#{rh_list.novoFuncionario.setor}"
-							size="40" readonly="rh_list.inserirFuncionario" />
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
 
+						<p:spacer></p:spacer>
+						<p:spacer></p:spacer>
+						<p:spacer></p:spacer>
+						<p:spacer></p:spacer>
 
-					<h:commandButton id="btnInserirNovoFuncionario" title="Inserir"
-						immediate="true" ajax="false" value="Inserir"
-						action="#{rh_list.inserirNovoFunc}">
-					</h:commandButton>
-
-
-				</h:panelGrid>
-					</h:form>
-
-		</p:dialog>
+					</h:panelGrid>
+				</p:scrollPanel>
+				<p:commandButton id="btnInserirNovoFuncionario" title="Inserir"
+					ajax="false" value="Inserir" action="#{rh_list.inserirNovoFunc}">
+				</p:commandButton>
+			</p:dialog>
+		</h:form>
 
 	</ui:define>
 </ui:composition>

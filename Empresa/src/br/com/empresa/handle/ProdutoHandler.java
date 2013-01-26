@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -23,6 +25,8 @@ import br.com.empresa.dao.EstoqueDAO;
 import br.com.empresa.dao.ProdutoDAO;
 import br.com.empresa.util.ControllerArquivo;
 
+@ManagedBean(name = "produtoHandle")
+@RequestScoped
 public class ProdutoHandler {
 
 	public String pesquisaProduto;
@@ -101,7 +105,12 @@ public class ProdutoHandler {
 	public String salvar() {
 
 		boolean isDeletar = true;
-		produtoDAO.update(produto);
+		try {
+			produtoDAO.update(produto);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int id = produto.getId() != 0 ? produto.getId() : produtoDAO.lista()
 				.size() == 0 ? 1 : produtoDAO.lista().size();
 
@@ -124,7 +133,7 @@ public class ProdutoHandler {
 		return "Salvar";
 	}
 	
-	public String salvarEstoque() {
+	public String salvarEstoque() throws Exception {
 		estoque.setProduto(produto);
 		estoqueDAO.persist(estoque);
 		estoque =  new Estoque();
@@ -163,7 +172,12 @@ public class ProdutoHandler {
 
 		file = new File(path + "\\imagens\\produto\\" + produto.getId() + ".jpg");
 		file.delete();
-		produtoDAO.delete(produto);
+		try {
+			produtoDAO.delete(produto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String pesquisaListProduto(ActionEvent event) {

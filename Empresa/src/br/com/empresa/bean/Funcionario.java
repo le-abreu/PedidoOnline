@@ -1,136 +1,94 @@
 package br.com.empresa.bean;
 
+import java.sql.Blob;
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Funcionario {
-
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)  
 	private Long id = new Long(0);
-
+	
 	private String nome;
-
+	
 	private String rg;
-
+	
 	private String cpf;
-
+	
 	private String carteiraTrabalho;
+	
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataAniversario = new Date();
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataContratacao = new Date();
 
-	private Date dataAniversario;
-
+	@Temporal(TemporalType.DATE)
+	private Date dataDemisao = new Date();
+	
 	private Integer genero;
-
+	
+	@OneToOne
 	private Endereco endereco;
-
+	
 	private Integer status;
-
-	private Date dataContratacao;
-
+	
+	
 	private String nomeDoPai;
-
+	
 	private String nomeDaMae;
-
+	
 	private String telefone;
-
+	
 	private String celular;
-
+	
 	private String Salario;
-
-	private Date dataDemisao;
-
+	
+	
+	
 	private String horarioInicio;
-
+	
 	private String horarioFim;
-
+	
 	private String cargo;
-
+	
 	private String setor;
+	
+	@Lob
+	private Blob photos;
 
-	private Funcionario gestor;
-
-	private List<Funcionario> subordinado;
-
-	public Date getDataDemisao() {
-		return dataDemisao;
-	}
-
-	public void setDataDemisao(Date dataDemisao) {
-		this.dataDemisao = dataDemisao;
-	}
-
-	public String getHorarioInicio() {
-		return horarioInicio;
-	}
-
-	public void setHorarioInicio(String horarioInicio) {
-		this.horarioInicio = horarioInicio;
-	}
-
-	public String getHorarioFim() {
-		return horarioFim;
-	}
-
-	public void setHorarioFim(String horarioFim) {
-		this.horarioFim = horarioFim;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getSalario() {
-		return Salario;
-	}
-
-	public void setSalario(String salario) {
-		Salario = salario;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-
-	public String getSetor() {
-		return setor;
-	}
-
-	public void setSetor(String setor) {
-		this.setor = setor;
-	}
-
-	public Funcionario getGestor() {
-		return gestor;
-	}
-
-	public void setGestor(Funcionario gestor) {
-		this.gestor = gestor;
-	}
-
-	public List<Funcionario> getSubordinado() {
-		return subordinado;
-	}
-
-	public void setSubordinado(List<Funcionario> subordinado) {
-		this.subordinado = subordinado;
-	}
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
+
+	public Blob getPhotos() {
+		return photos;
+	}
+
+
+	public void setPhotos(Blob photos) {
+		this.photos = photos;
+	}
+
 
 	public String getNome() {
 		return nome;
@@ -164,13 +122,10 @@ public class Funcionario {
 		this.carteiraTrabalho = carteiraTrabalho;
 	}
 
-	public Date getDataAniversario() {
-		return dataAniversario;
-	}
+	
+	@OneToOne
+	private Funcionario gestor;
 
-	public void setDataAniversario(Date dataAniversario) {
-		this.dataAniversario = dataAniversario;
-	}
 
 	public Integer getGenero() {
 		return genero;
@@ -178,6 +133,14 @@ public class Funcionario {
 
 	public void setGenero(Integer genero) {
 		this.genero = genero;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public Integer getStatus() {
@@ -188,21 +151,6 @@ public class Funcionario {
 		this.status = status;
 	}
 
-	public Endereco getEnderco() {
-		return endereco;
-	}
-
-	public void setEnderco(Endereco enderco) {
-		this.endereco = enderco;
-	}
-
-	public Date getDataContratacao() {
-		return dataContratacao;
-	}
-
-	public void setDataContratacao(Date dataContratacao) {
-		this.dataContratacao = dataContratacao;
-	}
 
 	public String getNomeDoPai() {
 		return nomeDoPai;
@@ -235,5 +183,84 @@ public class Funcionario {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
+
+	public String getSalario() {
+		return Salario;
+	}
+
+	public void setSalario(String salario) {
+		Salario = salario;
+	}
+
+
+	public Date getDataAniversario() {
+		return dataAniversario;
+	}
+
+
+	public void setDataAniversario(Date dataAniversario) {
+		this.dataAniversario = dataAniversario;
+	}
+
+
+	public Date getDataContratacao() {
+		return dataContratacao;
+	}
+
+
+	public void setDataContratacao(Date dataContratacao) {
+		this.dataContratacao = dataContratacao;
+	}
+
+
+	public Date getDataDemisao() {
+		return dataDemisao;
+	}
+
+
+	public void setDataDemisao(Date dataDemisao) {
+		this.dataDemisao = dataDemisao;
+	}
+
+
+	public String getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public void setHorarioInicio(String horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+	public String getHorarioFim() {
+		return horarioFim;
+	}
+
+	public void setHorarioFim(String horarioFim) {
+		this.horarioFim = horarioFim;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getSetor() {
+		return setor;
+	}
+
+	public void setSetor(String setor) {
+		this.setor = setor;
+	}
+
+	public Funcionario getGestor() {
+		return gestor;
+	}
+
+	public void setGestor(Funcionario gestor) {
+		this.gestor = gestor;
+	}	
 
 }

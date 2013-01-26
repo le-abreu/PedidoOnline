@@ -6,6 +6,8 @@
 		<class>br.com.empresa.bean.Produto</class>
 		<class>br.com.empresa.bean.Estoque</class>
 		<class>br.com.empresa.bean.Fornecedor</class>
+		<class>br.com.empresa.bean.Endereco</class>
+		<class>br.com.empresa.bean.Funcionario</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.format_sql" value="true" />

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/padraoEmpresa.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Fornecedores</ui:define>
+	<ui:define name="content">
+		<p:panel id="panelRecurso_1" header="Fornecedores 1"
+			style="margin-bottom:90px; font-size: 12px;">
+
+			<h:form id="formFornecedor_1" prependId="false">
+				<p:messages id="messages" />
+				<h:panelGrid id="panelSearch" columns="2">
+					<h:outputLabel id="lbl_pesquisa_1" value="Nome do fornecedor" />
+					<p:inputText id="txtSearch" size="40"
+						title="Digite o nome do fornecedor" value="#{fornecedorHandler.campoPesquisa}" />
+				</h:panelGrid>
+
+				<h:panelGrid id="panelRadio" columns="2" >
+					<p:commandButton id="btnPesquisar" value="Pesquisar"
+						style="font-size: 0.8em;" icon="ui-icon-search" ajax="false"
+						action="#{fornecedorHandler.pesquisaFornecedor}" />
+				</h:panelGrid>
+			</h:form>
+			<h:form id="buttonsForm" prependId="false">
+				<p:toolbar style="margin-top: 8px">
+					<p:toolbarGroup>
+						<p:commandButton id="btnNovo" value="Novo"
+							style="font-size: 0.8em;" icon="ui-icon-document"
+							immediate="true" ajax="false"
+							onclick="novoFornecedor_tela.show();return false;" />
+
+						<p:spacer></p:spacer>
+
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:form>
+			<h:form id="fornecedorResult" prependId="false">
+				<h:panelGroup id="dataTableResults">
+					<p:dataTable id="dataTableFuncionarioResults" var="fornecedor"
+						value="#{fornecedorHandler.listaFornecedores}"
+						emptyMessage="Nenhum fornecedor foi encontrado" paginator="true"
+						rows="10"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="10,20,50"
+						selection="#{fornecedorHandler.fornecedorSelecionado}"
+						style="margin-top: 8px">
+						
+							
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+
+						<p:column sortable="true" sortBy="#{fornecedor.nomeFantasia}">
+							<f:facet name="header">
+								<h:outputText value="Nome Fantasia" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.nomeFantasia}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{fornecedor.razaoSocial}">
+							<f:facet name="header">
+								<h:outputText value="Razão Social" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.razaoSocial}" />
+						</p:column>
+						
+						<p:column sortable="true" sortBy="#{fornecedor.cnpj}">
+							<f:facet name="header">
+								<h:outputText value="CNPJ" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.cnpj}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{fornecedor.ramoNegocio}">
+							<f:facet name="header">
+								<h:outputText value="Ramo de Negócio" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.ramoNegocio}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{fornecedor.cep}">
+							<f:facet name="header">
+								<h:outputText value="CEP" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.cep}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{fornecedor.caixaPostal}">
+							<f:facet name="header">
+								<h:outputText value="Caixa Postal" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.caixaPostal}" />
+						</p:column>
+							
+						
+						<p:column sortable="true" sortBy="#{fornecedor.codigoMunicipio}">
+							<f:facet name="header">
+								<h:outputText value="Código do Município" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.codigoMunicipio}" />
+						</p:column>	
+
+						<p:column sortable="true" sortBy="#{fornecedor.endereco}">
+							<f:facet name="header">
+								<h:outputText value="Endereço" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.endereco}" />
+						</p:column>	
+							
+						<p:column sortable="true" sortBy="#{fornecedor.bairro}">
+							<f:facet name="header">
+								<h:outputText value="Bairro" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.bairro}" />
+						</p:column>	
+						
+						<p:column sortable="true" sortBy="#{fornecedor.telefoneA}">
+							<f:facet name="header">
+								<h:outputText value="Bairro" />
+							</f:facet>
+							<h:outputText value="#{fornecedor.telefoneA}" />
+						</p:column>
+						
+						<p:column style="width:90px">
+							
+							<p:commandButton id="btnVer"
+								style="font-size: 0.8em;" icon="ui-icon-search"
+								oncomplete="novoFornecedor_tela.show()" update=":buttonsForm_3:dialogNovoBt" >
+								
+								<f:setPropertyActionListener value="#{fornecedor}" target="#{fornecedorHandler.fornecedor}"  />
+							</p:commandButton>
+							
+							<p:commandButton id="btnEditar"
+								style="font-size: 0.8em;" icon="ui-icon-pencil"
+								oncomplete="novoFornecedor_tela.show()" update=":buttonsForm_3:dialogNovoBt" >
+								
+								<f:setPropertyActionListener value="#{fornecedor}" target="#{fornecedorHandler.fornecedor}" />
+							</p:commandButton>
+
+				
+						</p:column>
+
+					</p:dataTable>
+				</h:panelGroup>
+			</h:form>
+
+		</p:panel>
+		<h:form id="buttonsForm_3" prependId="false">
+			<p:dialog id="dialogNovoBt" header="Cadastrar Novo"
+				widgetVar="novoFornecedor_tela" resizable="true" showEffect="fold" hideEffect="fold" >
+				
+				<h:inputHidden value="#{fornecedorHandler.fornecedor.codigo}" />
+				<h:panelGrid id="display_34" columns="2" cellpadding="4">
+					<h:outputText id="lbNomeFantasia" value="Nome Fantasia: " style="font-weight: bold" />
+					<p:inputText id="txtNomeFantasia" value="#{fornecedorHandler.fornecedor.nomeFantasia}"
+						size="40" readonly="" />
+
+					<h:outputText id="lblRazaoSocial" value="Razão Social: " style="font-weight: bold" />
+					<p:inputText id="txtRazaoSocial" value="#{fornecedorHandler.fornecedor.razaoSocial}"
+						size="40" readonly="" />
+
+					<h:outputText id="lblRamoNegocio" value="Ramo de Negócio: " style="font-weight: bold" />
+					<p:inputText id="txtRamoNegocio" value="#{fornecedorHandler.fornecedor.ramoNegocio}"
+						size="40" readonly="" />
+					
+					<h:outputText id="lblEndereço" value="Endereço: " style="font-weight: bold" />
+					<p:inputText id="txtEndereço" value="#{fornecedorHandler.fornecedor.endereco}"
+						size="40" readonly="" />
+					
+					<h:outputText id="lblCep" value="CEP: " style="font-weight: bold" />
+					<p:inputText id="txtCep" value="#{fornecedorHandler.fornecedor.cep}"
+						size="40" readonly="" />
+						
+					<h:outputText id="lblBairro" value="Bairro: " style="font-weight: bold" />
+					<p:inputText id="txtBairro" value="#{fornecedorHandler.fornecedor.bairro}"
+						size="40" readonly="" />
+					
+					<h:outputText id="lblCaixaPostal" value="Caixa Postal: " style="font-weight: bold" />
+					<p:inputText id="txtCaixaPostal" value="#{fornecedorHandler.fornecedor.caixaPostal}"
+						size="40" readonly="" />	
+					
+					<h:outputText id="lblCNPJ" value="CNPJ: " style="font-weight: bold" />
+					<p:inputText id="txtCNPJ" value="#{fornecedorHandler.fornecedor.cnpj}"
+						size="40" readonly="" />
+					
+					
+					<h:outputText id="lblInscriçãoEstadual" value="Inscrição Estadual: " style="font-weight: bold" />
+					<p:inputText id="txtInscriçãoEstadual" value="#{fornecedorHandler.fornecedor.inscEstadual}"
+						size="40" readonly="" />
+						
+					<h:outputText id="lblCodigoMunicipio" value="Código do Município: " style="font-weight: bold" />
+					<p:inputText id="txtCodigoMunicipio" value="#{fornecedorHandler.fornecedor.codigoMunicipio}"
+						size="40" readonly="" />
+						
+					<h:outputText id="lblTelefone" value="Telefone: " style="font-weight: bold" />
+					<p:inputText id="txtTelefone" value="#{fornecedorHandler.fornecedor.telefoneA}"
+						size="40" readonly="" />							
+					
+					<h:outputText id="lblTelefoneB" value="Telefone: " style="font-weight: bold" />
+					<p:inputText id="txtTelefoneB" value="#{fornecedorHandler.fornecedor.telefoneB}"
+						size="40" readonly="" />							
+					
+					<h:outputText id="lblFax" value="Fax: " style="font-weight: bold" />
+					<p:inputText id="txtFax" value="#{fornecedorHandler.fornecedor.fax}"
+						size="40" readonly="" />							
+					
+					<h:outputText id="lblEmail" value="E-mail" style="font-weight: bold" />
+					<p:inputText id="txtEmail" value="#{fornecedorHandler.fornecedor.email}"
+						size="40" readonly="" />							
+					
+					<h:commandButton id="btnInserirNovoFornecedor" title="Inserir"
+						value="Inserir"
+						action="#{fornecedorHandler.salvaFornecedor}">
+					</h:commandButton>
+				</h:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
