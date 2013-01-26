@@ -4,14 +4,13 @@ import java.io.File;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.FacesException;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.component.UIParameter;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.servlet.ServletContext;
 import javax.sql.rowset.serial.SerialBlob;
@@ -23,7 +22,7 @@ import br.com.empresa.bean.Funcionario;
 import br.com.empresa.dao.FuncionarioDao;
 
 @ManagedBean(name = "rh_list")
-@RequestScoped
+@SessionScoped
 public class RecursoHumanosListHandle {
 
 	public String pesquisa;
@@ -83,11 +82,8 @@ public class RecursoHumanosListHandle {
 
 	}
 
-	public void editar(ActionEvent event) {
-		
-		UIParameter val = (UIParameter) event.getComponent().findComponent("idFuncionarioEdit");
-		int id = Integer.parseInt(val.getValue().toString());
-		novoFuncionario = new FuncionarioDao().find(id);
+	public void editar() throws SQLException {
+
 		inserirFuncionario = false;		
 		
 		try {
@@ -121,6 +117,8 @@ public class RecursoHumanosListHandle {
 			e1.printStackTrace();
 		}
 		
+		return;
+	
 	}
 
 	public String getPesquisa() {
@@ -182,12 +180,8 @@ public class RecursoHumanosListHandle {
 
 	}
 
-	public void btnVer(ActionEvent event) {
+	public void btnVer() {
 		
-		UIParameter val = (UIParameter) event.getComponent().findComponent("idFuncionarioVer");
-		int id = Integer.parseInt(val.getValue().toString());
-		novoFuncionario = new FuncionarioDao().find(id);
-
 		try {
 			byte[] data = novoFuncionario.getPhotos().getBytes(1,(int) novoFuncionario.getPhotos().length() );
 		

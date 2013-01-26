@@ -29,13 +29,13 @@ public class Funcionario {
 	
 	
 	@Temporal(TemporalType.DATE)
-	private Date dataAniversario = new Date();
+	private Date dataAniversario;
 	
 	@Temporal(TemporalType.DATE)
-	private Date dataContratacao = new Date();
+	private Date dataContratacao;
 
 	@Temporal(TemporalType.DATE)
-	private Date dataDemisao = new Date();
+	private Date dataDemisao;
 	
 	private Integer genero;
 	

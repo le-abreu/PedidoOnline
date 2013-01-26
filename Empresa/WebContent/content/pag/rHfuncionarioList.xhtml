@@ -108,20 +108,18 @@
 						<p:column style="width:90px">
 							<p:commandButton id="btnVer" title="Ver"
 								icon="ui-icon ui-icon-search" update=":buttonsForm_3:dialogNovoBt"
-								oncomplete="novoFuncionario_tela.show()" actionListener="#{rh_list.btnVer}">
+								oncomplete="novoFuncionario_tela.show()" action="#{rh_list.btnVer}">
 								<f:setPropertyActionListener value="#{funcionario}"
 									target="#{rh_list.novoFuncionario}" />
-								<f:param name="idFuncionarioVer" id="idFuncionarioVer" value="#{funcionario.id}"/>
 							</p:commandButton>
 
 
 							<p:commandButton id="btnEditar" title="Editar"
-								icon="ui-icon-pencil" actionListener="#{rh_list.editar}"
+								icon="ui-icon-pencil" action="#{rh_list.editar}"
 								 update=":buttonsForm_3:dialogNovoBt"
 								oncomplete="novoFuncionario_tela.show()">
 								<f:setPropertyActionListener value="#{funcionario}"
 									target="#{rh_list.novoFuncionario}" />
-										<f:param name="idFuncionarioEdit" id="idFuncionarioEdit" value="#{funcionario.id}"/>
 							</p:commandButton>
 
 
