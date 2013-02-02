@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/padraoEmpresa.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Rercusos Humanos</ui:define>
+	<ui:define name="content">
+		<p:panel id="panelRecurso_1" header="Recursos Humanos 1"
+			style="margin-bottom:90px; font-size: 12px;">
+
+			<h:form id="Gerenciametno" prependId="false">
+				<p:messages id="messages" />
+				<h:panelGrid id="panelSearch" columns="2">
+					<h:outputLabel id="lbl_pesquisa_1" value="Nome do funcinario" />
+					<p:inputText id="txtSearch" size="40"
+						title="Digite o nome do funcionario" value="#{rh_list.pesquisa}" />
+				</h:panelGrid>
+
+				<h:panelGrid id="panelRadio" columns="2">
+					<p:selectOneRadio id="radioStatus__" value="#{rh_list.status}">
+						<f:selectItem itemLabel="Todos" itemValue="0" />
+					</p:selectOneRadio>
+
+					<p:commandButton id="btnPesquisar" value="Pesquisar"
+						style="font-size: 0.8em;" icon="ui-icon-search" ajax="false"
+						action="#{rh_list.listaFuncionarios}" />
+				</h:panelGrid>
+			</h:form>
+			<h:form id="buttonsForm" prependId="false">
+				<p:toolbar style="margin-top: 8px">
+					<p:toolbarGroup>
+						<p:commandButton id="btnNovo" value="Novo"
+							style="font-size: 0.8em;" icon="ui-icon-document"
+							immediate="true" ajax="false"
+							onclick="novoFuncionario_tela.show();return false;" action="#{rh_list.btnNovo()}"/>
+
+						<p:spacer></p:spacer>
+
+					</p:toolbarGroup>
+				</p:toolbar>
+			</h:form>
+			<h:form id="funcionarioResult" prependId="false">
+				<h:panelGroup id="dataTableResults">
+					<p:dataTable id="dataTableFuncionarioResults" var="funcionario"
+						value="#{rh_list.listaFuncionario}"
+						emptyMessage="nenhuma funcionario encontrado" paginator="true"
+						rows="10"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="10,20,50"
+						selection="#{rh_list.funcionarioSelecionado}"
+						style="margin-top: 8px">
+
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+
+						<p:column sortable="true" sortBy="#{funcionario.nome}">
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{funcionario.nome}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{funcionario.rg}">
+							<f:facet name="header">
+								<h:outputText value="RG" />
+							</f:facet>
+							<h:outputText value="#{funcionario.rg}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{funcionario.cpf}">
+							<f:facet name="header">
+								<h:outputText value="CPF" />
+							</f:facet>
+							<h:outputText value="#{funcionario.cpf}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{funcionario.carteiraTrabalho}">
+							<f:facet name="header">
+								<h:outputText value="Carteiro de Trabalho" />
+							</f:facet>
+							<h:outputText value="#{funcionario.carteiraTrabalho}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{funcionario.dataAniversario}">
+							<f:facet name="header">
+								<h:outputText value="Aniversario" />
+							</f:facet>
+							<h:outputText value="#{funcionario.dataAniversario}" />
+						</p:column>
+
+						<p:column sortable="true" sortBy="#{funcionario.genero}">
+							<f:facet name="header">
+								<h:outputText value="Genero" />
+							</f:facet>
+							<h:outputText value="#{funcionario.genero}" />
+						</p:column>
+
+
+						<p:column style="width:90px">
+							<p:commandButton id="btnVer" title="Ver"
+								icon="ui-icon ui-icon-search" update=":buttonsForm_3:dialogNovoBt"
+								oncomplete="novoFuncionario_tela.show()" action="#{rh_list.btnVer}">
+								<f:setPropertyActionListener value="#{funcionario}"
+									target="#{rh_list.novoFuncionario}" />
+							</p:commandButton>
+
+
+							<p:commandButton id="btnEditar" title="Editar"
+								icon="ui-icon-pencil" action="#{rh_list.editar}"
+								 update=":buttonsForm_3:dialogNovoBt"
+								oncomplete="novoFuncionario_tela.show()" >
+								<f:setPropertyActionListener value="#{funcionario}"
+									target="#{rh_list.novoFuncionario}" />
+							</p:commandButton>
+
+
+							<p:commandButton id="btnRemover" title="Remover"
+								icon="ui-icon-trash" action="#{rh_list.excluir()}" ajax="false">
+								<f:setPropertyActionListener
+									target="#{rh_list.funcionarioSelecionado}"
+									value="#{funcionario}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</h:panelGroup>
+			</h:form>
+
+		</p:panel>
+
+
+
+		<h:form id="buttonsForm_3" prependId="false">
+			<p:dialog id="dialogNovoBt" header="Cadastrar Novo"
+				widgetVar="novoFuncionario_tela" resizable="true" showEffect="fold"
+				hideEffect="fold">
+
+				<h:outputText id="lb345d" value="Tira Foto:"
+					style="font-weight: bold" rendered="#{rh_list.inserirFuncionario == false}" />
+
+
+
+					<h:panelGrid columns="3">
+						<p:photoCam widgetVar="pc" listener="#{rh_list.oncapture}"
+							update="photos" rendered="#{rh_list.inserirFuncionario == false}" />
+
+						<p:commandButton type="button" value="Capture"
+							onclick="pc.capture()" rendered="#{rh_list.inserirFuncionario == false}"/>
+
+						<p:imageSwitch effect="zoom" id="photos">
+							<ui:repeat value="#{rh_list.photos}" var="photo">
+								<p:graphicImage value="../images/img001.png" />
+							</ui:repeat>
+						</p:imageSwitch>
+				</h:panelGrid>
+				
+
+				<p:scrollPanel style="width:700px;height:200px">
+
+
+
+					<h:panelGrid columns="2">
+
+						<h:outputText id="lb2" value="Nome:" style="font-weight: bold" />
+						<p:inputText id="txt2" value="#{rh_list.novoFuncionario.nome}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl3" value="Rg: " style="font-weight: bold" />
+						<p:inputText id="txt3" value="#{rh_list.novoFuncionario.rg}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl4" value="Cpf: " style="font-weight: bold" />
+						<p:inputText id="txt4" value="#{rh_list.novoFuncionario.cpf}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl32" value="De Aniversario"
+							style="font-weight: bold" />
+
+						<p:calendar id="data" size="10" title="Data de Anivesario"
+							value="#{rh_list.novoFuncionario.dataAniversario}"
+							 pattern="dd/MM/yyyy" 
+							showOtherMonths="true" />
+
+						<h:outputText id="lbl6" value="Numero carteira de Trabalho: "
+							style="font-weight: bold" />
+						<p:inputText id="txt6"
+							value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl7" value="Sexo:" style="font-weight: bold" />
+
+						<p:selectOneRadio id="radioStatus_"
+							value="#{rh_list.novoFuncionario.status}">
+							<f:selectItem itemLabel="Masculino" itemValue="1" />
+							<f:selectItem itemLabel="Feminino" itemValue="2" />
+						</p:selectOneRadio>
+
+
+						<h:outputText id="lbl8" value="Rua:" style="font-weight: bold" />
+						<p:inputText id="txt8" value="#{rh_list.endereco.rua}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl9" value="Lougradouro: "
+							style="font-weight: bold" />
+						<p:inputText id="txt9" value="#{rh_list.endereco.lougradouro}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl10" value="Numero " style="font-weight: bold" />
+						<p:inputText id="txt10" value="#{rh_list.endereco.numero}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl11" value="Complemento"
+							style="font-weight: bold" />
+						<p:inputText id="txt11" value="#{rh_list.endereco.complemento}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl12" value="Status" style="font-weight: bold" />
+						<h:panelGrid id="panelRadio-" columns="2">
+							<p:selectOneRadio id="radioStatus"
+								value="#{rh_list.novoFuncionario.status}">
+								<f:selectItem itemLabel="Ativo" itemValue="1" />
+								<f:selectItem itemLabel="Inativo" itemValue="-1" />
+							</p:selectOneRadio>
+						</h:panelGrid>
+
+						<h:outputText id="lbl13" value="Nome do Pai"
+							style="font-weight: bold" />
+						<p:inputText id="txt13"
+							value="#{rh_list.novoFuncionario.nomeDoPai}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl14" value="Nome do Mãe"
+							style="font-weight: bold" />
+						<p:inputText id="txt14"
+							value="#{rh_list.novoFuncionario.nomeDaMae}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl16" value="Telefone"
+							style="font-weight: bold" />
+						<p:inputText id="txt16"
+							value="#{rh_list.novoFuncionario.telefone}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl17" value="Celular" style="font-weight: bold" />
+						<p:inputText id="txt17" value="#{rh_list.novoFuncionario.celular}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl18" value="Salario" style="font-weight: bold" />
+						<p:inputText id="txt18" value="#{rh_list.novoFuncionario.salario}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl400" value="Horario de Entrada"
+							style="font-weight: bold" />
+						<p:inputText id="txt20"
+							value="#{rh_list.novoFuncionario.horarioInicio}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl30" value="Data Contratação"
+							style="font-weight: bold" />
+
+						<p:calendar id="data_contratacao" size="10"
+							title="Data de Contratação"
+							value="#{rh_list.novoFuncionario.dataContratacao}"
+							showOtherMonths="true"  pattern="dd/MM/yyyy" />
+						<h:outputText id="lbl31" value="Data Demisão / Fim de contrato"
+							style="font-weight: bold" />
+						<p:calendar id="data_demisao" size="10"
+							title="Data de Demisao / fim de contrato"
+							value="#{rh_list.novoFuncionario.dataDemisao}" pattern="dd/MM/yyyy"  showOtherMonths="true"/>
+
+
+						<h:outputText id="lbl20" value="Horario de Entrada"
+							style="font-weight: bold" />
+						<p:inputText id="txt20_"
+							value="#{rh_list.novoFuncionario.horarioInicio}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+
+						<h:outputText id="lbl21" value="Horario de Saida"
+							style="font-weight: bold" />
+						<p:inputText id="txt21"
+							value="#{rh_list.novoFuncionario.horarioFim}" size="40"
+							readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl22" value="Cargo" style="font-weight: bold" />
+						<p:inputText id="txt22" value="#{rh_list.novoFuncionario.cargo}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<h:outputText id="lbl23" value="Setor" style="font-weight: bold" />
+						<p:inputText id="txt23" value="#{rh_list.novoFuncionario.setor}"
+							size="40" readonly="#{rh_list.inserirFuncionario}" />
+
+						<p:spacer></p:spacer>
+						<p:spacer></p:spacer>
+						<p:spacer></p:spacer>
+						<p:spacer></p:spacer>
+
+					</h:panelGrid>
+				</p:scrollPanel>
+				<p:commandButton id="btnInserirNovoFuncionario" title="Inserir"
+					ajax="false" value="Inserir" action="#{rh_list.inserirNovoFunc}">
+				</p:commandButton>
+			</p:dialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
