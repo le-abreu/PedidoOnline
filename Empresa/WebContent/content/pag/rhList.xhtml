@@ -24,8 +24,6 @@
 
 				<h:panelGrid id="panelRadio" columns="2">
 					<p:selectOneRadio id="radioStatus__" value="#{rh_list.status}">
-						<f:selectItem itemLabel="Ativo" itemValue="1" />
-						<f:selectItem itemLabel="Inativo" itemValue="-1" />
 						<f:selectItem itemLabel="Todos" itemValue="0" />
 					</p:selectOneRadio>
 
@@ -117,14 +115,14 @@
 							<p:commandButton id="btnEditar" title="Editar"
 								icon="ui-icon-pencil" action="#{rh_list.editar}"
 								 update=":buttonsForm_3:dialogNovoBt"
-								oncomplete="novoFuncionario_tela.show()">
+								oncomplete="novoFuncionario_tela.show()" >
 								<f:setPropertyActionListener value="#{funcionario}"
 									target="#{rh_list.novoFuncionario}" />
 							</p:commandButton>
 
 
 							<p:commandButton id="btnRemover" title="Remover"
-								icon="ui-icon-trash">
+								icon="ui-icon-trash" action="#{rh_list.excluir()}" ajax="false">
 								<f:setPropertyActionListener
 									target="#{rh_list.funcionarioSelecionado}"
 									value="#{funcionario}" />
@@ -181,18 +179,6 @@
 						<p:inputText id="txt4" value="#{rh_list.novoFuncionario.cpf}"
 							size="40" readonly="#{rh_list.inserirFuncionario}" />
 
-						<h:outputText id="lbl5" value="Numero carteira de Trabalho: "
-							style="font-weight: bold" />
-						<p:inputText id="txt5"
-							value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
-							readonly="#{rh_list.inserirFuncionario}" />
-
-						<h:outputText id="lbl5_" value="Numero carteira de Trabalho: "
-							style="font-weight: bold" />
-						<p:inputText id="txt5_"
-							value="#{rh_list.novoFuncionario.carteiraTrabalho}" size="40"
-							readonly="#{rh_list.inserirFuncionario}" />
-
 						<h:outputText id="lbl32" value="De Aniversario"
 							style="font-weight: bold" />
 
@@ -200,8 +186,6 @@
 							value="#{rh_list.novoFuncionario.dataAniversario}"
 							 pattern="dd/MM/yyyy" 
 							showOtherMonths="true" />
-
-
 
 						<h:outputText id="lbl6" value="Numero carteira de Trabalho: "
 							style="font-weight: bold" />

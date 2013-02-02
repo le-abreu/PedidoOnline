@@ -105,8 +105,9 @@ public class RecursoHumanosListHandle {
 				
 				Blob blob = new SerialBlob(data);
 				novoFuncionario.setPhotos(blob);
-				
 				imagem = newFileName;
+				listaFuncionarios();
+				
 			} catch (Exception e) {
 				throw new FacesException("Error in writing captured image.");
 			}
@@ -183,6 +184,8 @@ public class RecursoHumanosListHandle {
 	public void btnVer() {
 		
 		try {
+			
+			
 			byte[] data = novoFuncionario.getPhotos().getBytes(1,(int) novoFuncionario.getPhotos().length() );
 		
 		
@@ -201,7 +204,7 @@ public class RecursoHumanosListHandle {
 				
 				Blob blob = new SerialBlob(data);
 				novoFuncionario.setPhotos(blob);
-				
+				listaFuncionarios();
 				imagem = newFileName;
 			} catch (Exception e) {
 				throw new FacesException("Error in writing captured image.");
@@ -228,6 +231,25 @@ public class RecursoHumanosListHandle {
 
 	}
 
+	
+	public void excluir(){
+			
+
+		FuncionarioDao dao = new FuncionarioDao();
+		try {
+			dao.delete(funcionarioSelecionado);
+			listaFuncionarios();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	
+		
+		
+	}
+	
+	
 	public void oncapture(CaptureEvent captureEvent) {
 
 		byte[] data = captureEvent.getData();
