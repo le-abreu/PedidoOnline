@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/padraoEmpresa.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Categoria</ui:define>
+	<ui:define name="content">
+		<h:form id="formCategoria" prependId="false">
+
+			<p:panel id="panelCategoria" header="Categorias" style="margin-bottom:90px; font-size: 12px;">
+				<p:messages id="messages" />
+				<h:panelGrid id="panelSearch" columns="2">
+					<h:outputLabel id="lblPesquisaNomeCategoria" value="Nome do Categoria" />
+					<p:inputText id="txtSearch" size="40" title="Digite o nome do Categoria" value="#{categoriaHandle.pesquisaCategoria}" />
+					<p:commandButton id="btnPesquisar" value="Pesquisar" style="font-size: 0.8em;" icon="ui-icon-search" actionListener="#{categoriaHandle.pesquisaListCategoria}" update=":formCategoria:dataTableResults"/>
+				</h:panelGrid>
+
+				<p:toolbar style="margin-top: 8px">
+					<p:toolbarGroup>
+						<p:commandButton id="btnNovo" title="Nova Categoria" value="Nova Categoria" style="font-size: 0.8em;" icon="ui-icon-document" oncomplete="telaCategoria.show()" actionListener="#{categoriaHandle.novaCategoria}" update=":formCadastroCategoria:dialogCategoria"/>
+						
+						<p:spacer></p:spacer>
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<h:panelGroup id="dataTableResults">
+					<p:dataTable id="dataTableCategoriaResults" var="categoria"
+						value="#{categoriaHandle.categorias}" emptyMessage="Nenhum Categoria encontrado" paginator="true" rows="3"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="3,10,20" selection="#{categoriaHandle.categoria}" style="margin-top: 8px">
+
+						<f:facet name="header">
+							<h:outputText value="" />
+						</f:facet>
+										  
+						<p:column sortable="true" sortBy="#{categoria.nome}">
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{categoria.nome}" />
+						</p:column>
+						
+						<p:column>
+							<p:commandButton id="btnVer" title="Ver" icon="ui-icon ui-icon-search" oncomplete="telaViewCategoria.show()" update=":formViewCategoria:dialogViewCategoria">
+								<f:setPropertyActionListener value="#{categoria}" target="#{categoriaHandle.categoria}" />
+							</p:commandButton>
+							<p:commandButton id="btnEditar" title="Editar" icon="ui-icon-pencil" oncomplete="telaCategoria.show()" actionListener="#{categoriaHandle.selecionaCategoria}" update=":formCadastroCategoria:dialogCategoria">
+								<f:setPropertyActionListener value="#{categoria}" target="#{categoriaHandle.categoria}" />
+								<f:param value="#{categoria.id}" name="idCategoria" id="idCategoria" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</h:panelGroup>
+			</p:panel>
+		</h:form>
+		
+		<h:form id="formCadastroCategoria" prependId="false">
+			<p:dialog id="dialogCategoria" header="Categoria" widgetVar="telaCategoria" resizable="true" showEffect="fold" hideEffect="fold" >
+				<h:inputHidden id="id"  value="#{categoriaHandle.categoria.id}" />
+				<h:panelGrid id="gridCategoria" columns="2" cellpadding="4">
+					<h:outputLabel value="Nome:" for="nomeCategoriaNovo"/>
+					<p:inputText id="nomeCategoriaNovo"  value="#{categoriaHandle.categoria.nome}" />
+					
+					<h:outputLabel value="Descrição:" for="descricaoCategoriaNovo"/>
+				</h:panelGrid>  
+				<h:panelGrid columns="1" cellpadding="1" style="margin-left:14%; margin-top:-30px">
+					<p:inputTextarea rows="10" cols="70" value="#{categoriaHandle.categoria.descricao}" id="descricaoCategoriaNovo" />  
+					
+					<p:fileUpload fileUploadListener="#{categoriaHandle.uploadFoto}"
+						mode="advanced" update="messagesSalvar" auto="false" multiple="false"
+						sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Foto" showButtons="false" cancelLabel="Cancelar" uploadLabel="Salvar Foto"/>
+						
+					<h:commandButton action="#{categoriaHandle.salvar}" value="+Finalizar" id="btSalvar" />
+				</h:panelGrid>  
+				
+				<p:growl id="messagesSalvar" showDetail="false"/> 
+			</p:dialog>
+		</h:form>
+
+		<h:form id="formViewCategoria" prependId="false">
+			<p:dialog id="dialogViewCategoria" header="Categoria" widgetVar="telaViewCategoria" resizable="true" showEffect="fold" hideEffect="fold" >
+				<h:inputHidden id="idView"  value="#{categoriaHandle.categoria.id}" />
+				<h:panelGrid id="gridViewCategoria" columns="2" cellpadding="4">
+					<h:panelGrid id="gridResultViewCategoria" columns="2" cellpadding="4">
+						<h:outputLabel value="Nome:" for="nomeCategoriaView"/>
+						<h:outputLabel id="nomeCategoriaView"  value="#{categoriaHandle.categoria.nome}" />
+						
+						<h:outputLabel value="Descrição:" for=	"descricaoCategoriaView"/>
+					</h:panelGrid> 
+					<img src="#{categoriaHandle.categoria.foto}" width="160" height="140" style="margin-left:10px"/>
+				</h:panelGrid>
+				<h:panelGrid columns="1" cellpadding="1" style="margin-top:0px">
+					<p:inputTextarea rows="10" cols="70" value="#{categoriaHandle.categoria.descricao}" id="descricaoCategoriaView" disabled="true" />  
+				</h:panelGrid>
+				  
+			</p:dialog>
+		</h:form>
+	</ui:define>
+</ui:composition>

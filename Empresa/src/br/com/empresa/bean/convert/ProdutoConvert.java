@@ -13,7 +13,7 @@ import br.com.empresa.dao.ProdutoDAO;
 public class ProdutoConvert implements Converter{
 
 	//Teste de commit
-	public final static String CONVERTER_ID = "br.com.desenrola.bean.Artista"; //path dos beans da classe Artista
+	public final static String CONVERTER_ID = "br.com.empresa.Produto"; //path dos beans da classe Artista
 
 	@Override
 	public Produto getAsObject(FacesContext arg0, UIComponent arg1, String valor) {

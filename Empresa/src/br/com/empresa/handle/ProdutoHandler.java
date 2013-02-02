@@ -18,10 +18,14 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import br.com.empresa.bean.Categoria;
 import br.com.empresa.bean.Estoque;
+import br.com.empresa.bean.Fornecedor;
 import br.com.empresa.bean.Produto;
 import br.com.empresa.bean.TipoLancamentoEnum;
+import br.com.empresa.dao.CategoriaDAO;
 import br.com.empresa.dao.EstoqueDAO;
+import br.com.empresa.dao.FornecedorDAO;
 import br.com.empresa.dao.ProdutoDAO;
 import br.com.empresa.util.ControllerArquivo;
 
@@ -36,7 +40,6 @@ public class ProdutoHandler {
 	private List<Produto> produtos;
 	private EstoqueDAO estoqueDAO = new EstoqueDAO();
 	private ProdutoDAO produtoDAO = new ProdutoDAO();
-	private final static String path = "C:\\Users\\LeulSeixas\\Desktop\\Fiap\\Project\\PedidoOnline\\Empresa\\WebContent";
 	private StreamedContent imagem;
 
 	{
@@ -96,7 +99,7 @@ public class ProdutoHandler {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		try {
 			imagem = new DefaultStreamedContent(event.getFile().getInputstream(), "image/jpeg", event.getFile().getFileName());
-			ControllerArquivo.guardarArquivo(imagem.getStream(), path+ "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
+			ControllerArquivo.guardarArquivo(imagem.getStream(), "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -108,21 +111,18 @@ public class ProdutoHandler {
 		try {
 			produtoDAO.update(produto);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		int id = produto.getId() != 0 ? produto.getId() : produtoDAO.lista()
 				.size() == 0 ? 1 : produtoDAO.lista().size();
 
 		try {
-			File file = new File(path + "\\imagens\\temp\\produto\\fotoPerfil.jpg");
+			File file = new File(ControllerArquivo.criarArquivo("\\imagens\\temp\\produto\\fotoPerfil.jpg"));
 			if (!file.exists()) {
 				isDeletar = false;
-				file = new File(path
-						+ "\\imagens\\temp\\produto\\fotoPerfilPadrao.jpg");
+				file = new File(ControllerArquivo.criarArquivo("\\imagens\\temp\\produto\\fotoPerfilPadrao.jpg"));
 			}
-			ControllerArquivo.guardarArquivo(new FileInputStream(file), path
-					+ "\\imagens\\produto\\", id + ".jpg");
+			ControllerArquivo.guardarArquivo(new FileInputStream(file), "\\imagens\\produto\\", id + ".jpg");
 			produto = new Produto();
 			if (isDeletar)
 				file.delete();
@@ -148,16 +148,16 @@ public class ProdutoHandler {
 
 	public void selecionaProduto(ActionEvent event) {
 		File file;
-		file = new File(path + "\\imagens\\produto\\fotoPerfil.jpg");
+		file = new File(ControllerArquivo.criarArquivo("\\imagens\\produto\\fotoPerfil.jpg"));
 		file.delete();
 
 		UIParameter val = (UIParameter) event.getComponent().findComponent("idProduto");
 		int id = Integer.parseInt(val.getValue().toString());
 		produto = produtoDAO.find(id);
 
-		file = new File(path + "\\imagens\\produto\\" + produto.getId()	+ ".jpg");
+		file = new File(ControllerArquivo.criarArquivo("\\imagens\\produto\\" + produto.getId()	+ ".jpg"));
 		try {
-			ControllerArquivo.guardarArquivo(new FileInputStream(file), path + "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
+			ControllerArquivo.guardarArquivo(new FileInputStream(file), "\\imagens\\temp\\produto\\", "fotoPerfil.jpg");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -170,18 +170,21 @@ public class ProdutoHandler {
 		int id = Integer.parseInt(val.getValue().toString());
 		produto = produtoDAO.find(id);
 
-		file = new File(path + "\\imagens\\produto\\" + produto.getId() + ".jpg");
+		file = new File(ControllerArquivo.criarArquivo("\\imagens\\produto\\" + produto.getId() + ".jpg"));
 		file.delete();
 		try {
 			produtoDAO.delete(produto);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public String pesquisaListProduto(ActionEvent event) {
-		produtos = produtoDAO.buscaListaPorParametro(pesquisaProduto);
+		if(pesquisaProduto.isEmpty())
+			produtos = produtoDAO.lista();
+		else
+			produtos = produtoDAO.buscaListaPorParametro(pesquisaProduto);
+
 		return "Salvar";
 	}
 	
@@ -192,5 +195,13 @@ public class ProdutoHandler {
 			items[i++] = new SelectItem(t, ""+t);
 		}
 		return items;
+	}
+	
+	public List<Categoria> getCategorias() {
+		return new CategoriaDAO().lista();
+	}
+	
+	public List<Fornecedor> getFornecedores() {
+		return new FornecedorDAO().lista();
 	}
 }

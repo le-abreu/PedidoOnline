@@ -25,7 +25,6 @@
 					<p:toolbarGroup>
 						<p:commandButton id="btnNovo" value="Novo Produto" style="font-size: 0.8em;" icon="ui-icon-document"
 							immediate="true" ajax="false" onclick="telaProduto.show();return false;" />
-
 						<p:spacer></p:spacer>
 					</p:toolbarGroup>
 				</p:toolbar>
@@ -51,11 +50,11 @@
 							<h:outputText value="#{produto.nome}" />
 						</p:column>
 												
-						<p:column sortable="true" sortBy="#{produto.categoria}">
+						<p:column sortable="true" sortBy="#{produto.categoria.nome}">
 							<f:facet name="header">
 								<h:outputText value="Categoria" />
 							</f:facet>
-							<h:outputText value="#{produto.categoria}" />
+							<h:outputText value="#{produto.categoria.nome}" />
 						</p:column>		
 						
 						<p:column>
@@ -66,7 +65,7 @@
 								<f:setPropertyActionListener value="#{produto}" target="#{produtoHandle.produto}" />
 								<f:param value="#{produto.id}" name="idProduto" id="idProduto" />
 							</p:commandButton>
-							<p:commandButton id="btnRemover" title="Remover" icon="ui-icon-trash" oncomplete="telaEstoqueProduto.show()" update=":formEstoqueProduto:dialogEstoqueProduto">
+							<p:commandButton id="btnEstoque" title="Estoque" icon="ui-icon ui-icon-calculator" oncomplete="telaEstoqueProduto.show()" update=":formEstoqueProduto:dialogEstoqueProduto">
 								<f:setPropertyActionListener target="#{produtoHandle.produto}" value="#{produto}" />
 							</p:commandButton>
 						</p:column>
@@ -118,8 +117,11 @@
 					<h:outputLabel value="Nome:" for="nomeProdutoNovo"/>
 					<p:inputText id="nomeProdutoNovo"  value="#{produtoHandle.produto.nome}" />
 					
-					<h:outputLabel value="Categoria:" for="categoriaProdutoNovo"/>
-					<p:inputText id="categoriaProdutoNovo"  value="#{produtoHandle.produto.categoria}" />
+					<h:outputLabel value="Categoria:" for="categoriaProdutoNovo"/> 
+					<h:selectOneMenu id="categoriaProdutoNovo" value="#{produtoHandle.produto.categoria}"> 
+						<f:selectItems value="#{produtoHandle.categorias}" var="categoria" itemLabel="#{categoria.nome}" />
+						<f:converter converterId="br.com.empresa.bean.Categoria"/> 
+					</h:selectOneMenu>
 					
 					<h:outputLabel value="Codigo Barra:" for="codigoBarraProdutoNovo"/>
 					<p:inputText id="codigoBarraProdutoNovo"  value="#{produtoHandle.produto.codigoBarra}" />
@@ -156,6 +158,12 @@
 						<h:outputLabel value="Qtd:" for="qtdEstoque"/>
 						<p:inputText id="qtdEstoque" value="#{produtoHandle.estoque.quantidade}"/>
 
+						<h:outputLabel value="Fornecedor" for="fornecedorEstoque"/> 
+						<h:selectOneMenu id="fornecedorEstoque" value="#{produtoHandle.estoque.fornecedor}"> 
+							<f:selectItems value="#{produtoHandle.fornecedores}" var="fornecedor" itemLabel="#{fornecedor.nomeFantasia}" />
+							<f:converter converterId="br.com.empresa.bean.Fornecedor"/> 
+						</h:selectOneMenu>
+
 						<h:outputLabel value="Validade:" for="dataValidadeEstoque"/>
 						<p:calendar id="dataValidadeEstoque" value="#{produtoHandle.estoque.dataValidade}" pattern="dd/MM/yyyy" showButtonPanel="true"/>  
 						
@@ -179,7 +187,7 @@
 						<h:outputLabel id="nomeProdutoView"  value="#{produtoHandle.produto.nome}" />
 						
 						<h:outputLabel value="Categoria:" for="categoriaProdutoView"/>
-						<h:outputLabel id="categoriaProdutoView"  value="#{produtoHandle.produto.categoria}" />
+						<h:outputLabel id="categoriaProdutoView"  value="#{produtoHandle.produto.categoria.nome}" />
 						
 						<h:outputLabel value="Codigo Barra:" for="codigoBarraProdutoView"/>
 						<h:outputLabel id="codigoBarraProdutoView"  value="#{produtoHandle.produto.codigoBarra}" />

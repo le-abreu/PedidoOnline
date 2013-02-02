@@ -5,7 +5,17 @@
 	version="2.0">
 	
 	<converter>  
-	   <converter-id>br.com.produto.bean.Produto</converter-id>  
+	   <converter-id>br.com.empresa.bean.Produto</converter-id>  
 	   <converter-class>br.com.empresa.bean.convert.ProdutoConvert</converter-class>  
+	</converter>
+	
+	<converter>  
+	   <converter-id>br.com.empresa.bean.Categoria</converter-id>  
+	   <converter-class>br.com.empresa.bean.convert.CategoriaConvert</converter-class>  
+	</converter>
+	
+	<converter>  
+	   <converter-id>br.com.empresa.bean.Fornecedor</converter-id>  
+	   <converter-class>br.com.empresa.bean.convert.FornecedorConvert</converter-class>  
 	</converter>
 </faces-config>

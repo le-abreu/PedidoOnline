@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import br.com.empresa.dao.EstoqueDAO;
 
 
 @Entity
@@ -25,8 +28,8 @@ public class Produto {
 	@Column()
 	private String codigoBarra;
 	
-	@Column()
-	private String categoria;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Categoria categoria;
 	
 	@Column()
 	private double preco;
@@ -61,11 +64,11 @@ public class Produto {
 		this.codigoBarra = codigoBarra;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
@@ -86,7 +89,7 @@ public class Produto {
 	}
 
 	public List<Estoque> getListaEstoque() {
-		return listaEstoque;
+		return new EstoqueDAO().buscaListaPorProdutoFornecedor(this, null);
 	}
 
 	public void setListaEstoque(List<Estoque> listaEstoque) {
@@ -95,7 +98,6 @@ public class Produto {
 
 	public String getFoto() {
 		String path = "../..";
-//		String path = "C:/Desenrola/WebContent";
 		return path+"/imagens/produto/"+getId()+".jpg";
 	}
 
